@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = mysqli_query($conn, $query);
 
     // Build the HTML page with the results
-    echo "<html><head><title>Book Search Results</title></head><body>";
+    echo "<html><head><title>Book BookSearch Results</title></head><body>";
 
     // Display the matching books
     echo "<h2>Matching Books:</h2>";
