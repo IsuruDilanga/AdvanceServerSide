@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +8,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 	<div>
 		<h1>Student Details</h1>
-		<p>Student Name: Isuru Dissanayake</p>
-		<p>University: IIT</p>
+		<p>Student Name: <?php echo $name ?></p>
+		<p>Course: <?php echo $course ?></p>
 		<p>Student ID: 20211132</p>
+		<img src="<?php echo $picture ?>">
 	</div>
 </body>
 </html>
