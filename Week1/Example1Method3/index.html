@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Module Mark Calculator</title>
+    <script>
+        function validateForm(){
+            var cw1 = document.getElementById("cw1").value;
+            var cw2 = document.getElementById("cw2").value;
+
+            if(isNaN(cw1) || isNaN(cw2)){
+                alert("Please enter valid numerical value");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="calculate_mark.php" method="post" onsubmit="return validateForm()">
+        <label for="cw1">Coursework 1:</label>
+        <input type="text" id="cw1" name="cw1" required>
+        <br>
+        <label for="cw2">Coursework 2:</label>
+        <input type="text" id="cw2" name="cw2" required>
+        <br>
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
