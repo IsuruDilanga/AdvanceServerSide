@@ -1,7 +1,7 @@
 <h1>Genre Movie</h1>
 <div>
 	<?php foreach ($genre_details as $detail) : ?>
-		<p><a href="<?php echo ('http://localhost:8888/Week4E1/index.php/pages/'.$detail['genre']); ?>"><?php echo $detail['genre']; ?></a></p>
+		<p><a href="<?php echo ('http://localhost:8888/Week4E/index.php/pages/'.$detail['genre']); ?>"><?php echo $detail['genre']; ?></a></p>
 	<?php endforeach; ?>
 </div>
 
