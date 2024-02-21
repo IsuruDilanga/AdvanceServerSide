@@ -17,4 +17,4 @@
 	</tr <?php endforeach; ?>>
 </table>
 <br><br>
-<a href="http://localhost:8888/Week4E1/index.php/movies/search">Search Page</a>
+<a href="http://localhost:8888/Week4E/index.php/movies/search">Search Page</a>

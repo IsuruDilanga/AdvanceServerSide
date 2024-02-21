@@ -5,4 +5,4 @@
 	<?php endforeach; ?>
 </div>
 
-<a href="http://localhost:8888/Week4E1/index.php/films/getAllFilmDetails">Back All Films Rating</a>
+<a href="http://localhost:8888/Week4E/index.php/films/getAllFilmDetails">Back All Films Rating</a>
