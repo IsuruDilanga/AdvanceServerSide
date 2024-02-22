@@ -9,7 +9,7 @@
 		<th>Plant ife</th>
 	</tr>
 	<tr <?php foreach ($dinosaurs_details as $detail) :?>>
-		<td><a href="<?php echo ('http://localhost:8888/Week3E2/index.php/pages/'.$detail['name']); ?>"> <?php echo $detail['name']; ?></a></td>
+		<td><a href="<?php echo ('http://localhost/Week3E2/index.php/pages/'.$detail['name']); ?>"> <?php echo $detail['name']; ?></a></td>
 		<td><?php echo $detail['period']; ?></td>
 		<td><?php echo $detail['land_animals']; ?></td>
 		<td><?php echo $detail['marine_animals']; ?></td>

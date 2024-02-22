@@ -6,9 +6,9 @@
 			$this->load->model('movies_model');
 		}
 
-		public function index(){
-			$this->load->view('pages/search');
-		}
+		// public function index(){
+		// 	$this->load->view('pages/search');
+		// }
 
 		public function search(){
 			$genre = $this->input->get('genre', true);

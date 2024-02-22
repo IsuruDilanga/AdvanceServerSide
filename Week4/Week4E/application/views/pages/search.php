@@ -1,5 +1,5 @@
 <h1>Movie Search</h1>
-<form action="http://localhost:8888/Week4E/index.php/movies/search" method="get">
+<form action="http://localhost/Week4E/index.php/movies/search" method="get">
 	<label for="genre">Search by Genre:</label>
 	<select id="genre" name="genre">
 		<option value="action">Action</option>
@@ -45,5 +45,5 @@
 <?php } ?>
 
 <br><br>
-<a href="http://localhost:8888/Week4E/index.php/movies/allmovies">All Movie Details</a>
+<a href="http://localhost/Week4E/index.php/movies/allmovies">All Movie Details</a>
 

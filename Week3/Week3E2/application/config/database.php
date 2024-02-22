@@ -6,9 +6,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost:8889',
+	'hostname' => 'localhost',
 	'username' => 'root',
-	'password' => 'root',
+	'password' => '',
 	'database' => 'CIWeek3',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

@@ -5,4 +5,4 @@
 	<p><?php echo $detail['title'] ?></p>
 <?php endforeach; ?>
 
-<a href="http://localhost:8888/Week4E/index.php/genre/viewgenre">Back to Genre</a>
+<a href="http://localhost/Week4E/index.php/genre/viewgenre">Back to Genre</a>

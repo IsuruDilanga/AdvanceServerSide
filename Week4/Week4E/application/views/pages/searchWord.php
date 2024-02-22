@@ -1,12 +1,12 @@
 <h1>Search Title by Word</h1>
-<form action="http://localhost:8888/Week4E/index.php/searchbyword/movieSearchWord" method="get">
+<form action="http://localhost/Week4E/index.php/searchbyword/movieSearchWord" method="get">
 	<label for="title">Search by title</label>
 	<input type="text" id="title" name="title">
 	<br><br>
 	<button type="submit">Search</button>
 </form>
 <br><br>
-<a href="http://localhost:8888/Week4E/index.php/movies/search">Search by Genre and IMDB Rating</a>
+<a href="http://localhost/Week4E/index.php/movies/search">Search by Genre and IMDB Rating</a>
 <br><br>
 <h1>Search Result</h1>
 <?php if($search_results === false): ?>
