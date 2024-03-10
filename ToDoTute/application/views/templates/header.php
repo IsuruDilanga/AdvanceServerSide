@@ -15,9 +15,41 @@
 			.navbar-nav {
 				margin-left: auto;
 			}
-			.container {
-				max-width: 800px;
+
+			.table-container {
+				margin-top: 20px;
+				margin-left: 22%;
+				width: 80%
 			}
+
+
+			table {
+				width: 70%;
+				border-collapse: collapse;
+			}
+
+			thead {
+				background-color: #f2f2f2;
+			}
+
+			th, td {
+				padding: 8px;
+				text-align: left;
+				border: 1px solid #000000;
+			}
+
+			.priority-high {
+				background-color: red;
+			}
+
+			.priority-medium {
+				background-color: yellow;
+			}
+
+			.priority-low {
+				background-color: green;
+			}
+
 		</style>
 	</head>
 	<body>

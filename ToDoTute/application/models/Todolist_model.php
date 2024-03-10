@@ -12,5 +12,12 @@
 			return $query->result_array();
 		}
 
+		public function addToDoList($user_id, $actionTitle, $date, $priority){
+			$this->db->insert('actions', array('userid' => $user_id,
+				'action_titles' => $actionTitle,
+				'added_date' => $date,
+				'priority_level' => $priority));
+
+		}
 
 	}
