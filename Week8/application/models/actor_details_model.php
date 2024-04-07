@@ -1,5 +1,5 @@
 <?php
-class actor_details_model extends CI_Model{
+class sactor_details_model extends CI_Model{
 
 	public function __construct(){
 		$this->load->database();
