@@ -174,7 +174,8 @@ body {
 
 #errSign {
 	text-align: center;
-	margin-bottom: 0;
+	margin-bottom: 10px;
+	font-family: "Poppins", sans-serif;
 	color: red;
 	font-size: 14px;
 }
@@ -191,24 +192,67 @@ body {
 	font-size: 14px;
 }
 
-
-
-
-
-
-
-
-
-.btn-google {
-	color: white;
-	background-color: #ea4335;
+.navbar-brand{
+	font-size: 25px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
 }
 
-.btn-facebook {
-	color: white;
-	background-color: #3b5998;
+.question-area .top-questions{
+	margin-top: 130px;
+	font-size: 30px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
 }
 
+.one-question .single-question{
+	margin-top: 50px;
+	font-size: 30px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+}
+
+.one-question .tags-cover{
+	text-align: center;
+	width: 100px;
+	border: 0.4px solid gray;
+	/*border-color: #070303;*/
+	border-radius: 20px;
+}
+
+.one-question  p{
+	padding: 4px;
+	margin-bottom: 0;
+}
+
+.question-page-title{
+	font-size: 32px;
+	margin-top: 150px
+}
+
+.question-title{
+	margin-top: 30px;
+	border-radius: 10px;
+	padding: 20px;
+	border: 1px solid gray;
+}
+
+.question-title .topic{
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+	font-size: 30px;
+	margin-bottom: 0;
+}
+
+.form-title{
+	border-radius: 10px;
+}
+
+.question-subbtn{
+	margin:20px auto;
+	/*margin-top: 20px;*/
+	border-radius: 5px;
+}
 
 /*Table styling*/
 .table-wrapper {
@@ -363,10 +407,35 @@ table.table td .add {
 	color: #002f63;
 }
 
-.nav-color {
-	background-color: #004188;
-	padding: 4px 150px;
+.navbar{
+	padding: 15px 120px;
 }
+
+.nav-color {
+	background-color: #3086e4;
+	/*padding: 15px 100px;*/
+}
+
+.navbar .form-inline .form-control {
+	margin-left: 20px;
+	border-radius: 10px;
+	width: 700px; /* Increase the width as needed */
+}
+
+.navbar .form-inline .btn{
+	border-radius: 10px;
+	background-color: #6bb772;
+	color: white;
+}
+
+.nav-username{
+	margin-left: 20px;
+}
+
+/*.navbar .form-inline .btn:active{*/
+/*	background-color: #072949;*/
+/*	color: white;*/
+/*}*/
 
 .nav-color .navbar-brand {
 	color: #ffffff;

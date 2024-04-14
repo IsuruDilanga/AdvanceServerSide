@@ -4,7 +4,9 @@ app.models.User = Backbone.Model.extend({
 	defaults: {
 		username: "",
 		password: "",
-		user_id: null
+		user_id: null,
+		occupation: "",
+		premium: false,
 	},
 	url: '/TechQ/index.php/api/User/',
 
