@@ -34,7 +34,8 @@ function validateQuestionAddForm(){
 		'question': $("textarea#inputQuestionDetails").val(),
 		'expectationQ': $("textarea#inputQuestionExpectation").val(),
 		'category': $("select#questionCategory").val(),
-		'tags': $("input#inputQuestionTags").val()
+		'tags': $("input#inputQuestionTags").val(),
+		'qaddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
 	};
 	console.log(question);
 	// Check if 'question' or 'expectationQ' has at least 20 characters

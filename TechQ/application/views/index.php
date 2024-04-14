@@ -276,7 +276,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</select>
 	</div>
 
-
 	<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>
 </script>
 

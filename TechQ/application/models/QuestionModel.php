@@ -46,4 +46,42 @@ class QuestionModel extends CI_Model{
 //		}
 
 	}
+
+	public function addQuestion($userid, $title, $question, $expectationQ, $category, $qaddeddate, $tagArray){
+		$this->db->trans_start(); // Start transaction
+
+		$questionData = array(
+			'userid' => $userid,
+			'title' => $title,
+			'question' => $question,
+			'expectationQ' => $expectationQ,
+			'category' => $category,
+			'qaddeddate' => $qaddeddate
+		);
+
+		// Insert into 'Questions' table
+		$insertDetails = $this->db->insert('Questions', $questionData);
+
+		// Check if the insertion was successful
+		if ($insertDetails) {
+			// Get the last inserted question ID
+			$questionId = $this->db->insert_id();
+
+			// Insert into 'Tags' table
+			foreach ($tagArray as $tag) {
+				$tagData = array(
+					'questionid' => $questionId, // Use the retrieved question ID
+					'tags' => trim($tag)
+				);
+				$this->db->insert('Tags', $tagData);
+			}
+		}
+
+		$this->db->trans_complete(); // Complete transaction
+
+		return $insertDetails && $this->db->trans_status(); // Return transaction status
+	}
+
+
+
 }

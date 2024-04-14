@@ -4,7 +4,7 @@ app.models.Questions = Backbone.Model.extend({
 	urlRoot: '/TechQ/index.php/api/Question/',
 	defaults: {
 		question: null,
-		userid: null,
+		user_id: null,
 		title: null,
 		question: null,
 		questionimage: null,

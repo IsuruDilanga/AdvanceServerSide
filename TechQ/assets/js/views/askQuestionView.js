@@ -25,9 +25,30 @@ app.views.AddQuestionView = Backbone.View.extend({
 				text: 'Please chech the requirment satisfied or not',
 				timeout: 2000
 			}).show();
-			console.log("if")
 		}else{
-			console.log("else")
+			this.model.set(valiteQuestionForm);
+			var url = this.model.urlAskQuestion + "addquestion";
+			console.log("url",url);
+			this.model.save(this.model.attributes, {
+				"url": url,
+				success: function(model, response){
+					console.log('success', model, response);
+					new Noty({
+						type: 'success',
+						text: 'Question added successfully',
+						timeout: 2000
+					}).show();
+					// Backbone.history.navigate('questions', {trigger: true});
+				},
+				error: function(model, response){
+					console.log('error', model, response);
+					new Noty({
+						type: 'error',
+						text: 'Error adding question',
+						timeout: 2000
+					}).show();
+				}
+			})
 		}
 	}
 })
