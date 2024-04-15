@@ -22,6 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="../../assets/js/Models/question.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/questionView.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/askQuestionView.js" type="text/javascript"></script>
+	<script src="../../assets/js/views/answerQuestionView.js" type="text/javascript"></script>
 
 	<!-- Adding CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -180,7 +181,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/template" id="question_template">
 	<div class="one-question">
-		<h4 class="single-question"><%=title%></h4>
+		<h4 class="single-question"><a href="#home/answerquestion/<%=questionid%>" style="text-decoration: none; color: navy"><%=title%></a></h4>
 		<div class="all-tags" style="display: flex">
 			<% tags.forEach(function(tag) { %>
 			<div class="tags-cover" style="margin-right: 10px">
@@ -277,6 +278,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>
+</script>
+
+<script type="text/template" id="answer-question-template">
+
+	<div class="header" style="position:absolute;top:0;left:0;width:100%">
+		<nav class="navbar navbar-expand-lg navbar-light nav-color">
+			<a class="navbar-brand" href="#">Tech'Q</a>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> search</button>
+			</form>
+
+			<div class="collapse navbar-collapse" id="navbarToggler">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-username" style="font-size: 20px; cursor: pointer">
+						<a href="#" style="text-decoration: none; color: white">
+							<i class="fa-solid fa-user"></i> <%=username%>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li style="font-size: 20px">
+						<a href="#" style="text-decoration: none; color: white">
+							<i class="fa-regular fa-bookmark"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
+						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+				</ul>
+
+			</div>
+		</nav>
+
+	</div>
+
+<!--	<h1>answer Question Page</h1>-->
+	<div class="ans-question-title">
+		<h3 class="answer"><%= title %></h3>
+		<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>
+	</div>
+
+	<div class="ans-question">
+		<h4><%= question %></h4>
+		<p><%= expectationQ %></p>
+	</div>
+
+
 </script>
 
 </body>

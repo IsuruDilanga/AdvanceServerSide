@@ -50,5 +50,11 @@ app.views.AddQuestionView = Backbone.View.extend({
 				}
 			})
 		}
+
+		$('#inputQuestionTitle').val('');
+		$('#inputQuestionDetails').val('');
+		$('#inputQuestionExpectation').val('');
+		$('#inputQuestionTags').val('');
+		$('#questionCategory').val('');
 	}
 })

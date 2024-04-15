@@ -11,8 +11,13 @@ class Question extends REST_Controller{
 		$this->load->model('QuestionModel');
 	}
 
-	public function displayAllQuestions_get(){
-		$questions = $this->QuestionModel->getAllQuestions();
+	public function displayAllQuestions_get($question_id = FALSE){
+
+		if ($question_id === FALSE) {
+			$questions = $this->QuestionModel->getAllQuestions();
+		} else {
+			$questions = $this->QuestionModel->getQuestion($question_id);
+		}
 
 		// Check if the user data exists
 		if (!empty($questions)) {

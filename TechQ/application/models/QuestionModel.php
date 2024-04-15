@@ -21,30 +21,42 @@ class QuestionModel extends CI_Model{
 			return new stdClass();
 		}
 
-//		$this->db->select('*');
-//		$this->db->from('Questions');
-//		$query = $this->db->get();
-//
-//		return $query->result();
+	}
 
+	public function getQuestion($question_id)
+	{
+		{
+			$question = $this->db->get_where("Questions", array('questionid' => $question_id))->row();
 
-//		$students = $this->db->get("student");
-//		if($students->num_rows() > 0){ // Check if there are rows returned
-//			$students_array = $students->result(); // Fetch results as object
-//			foreach ($students_array as &$student) {
-//				$module_id = $student->module_id;
-//				$module_query = $this->db->select('name')
-//					->from('module')
-//					->where('id', $module_id)
+			if ($question) {
+				$tag_query = $this->db->select('tags')
+					->from('Tags')
+					->where('questionid', $question->questionid)
+					->get();
+				$tags = $tag_query->result();
+				$question->tags = array_column($tags, 'tags');
+
+				return $question;
+			} else {
+				return null; // Return null if no question found
+			}
+		}
+//		$question = $this->db->get_where("Questions", array('questionid' => $question_id));
+//		if ($question->num_rows() > 0) {
+//			$question_array = $question->result();
+//			foreach ($question_array as $question) {
+//				$question_id = $question->questionid;
+//				$tag_query = $this->db->select('tags')
+//					->from('Tags')
+//					->where('questionid', $question_id)
 //					->get();
-//				$modules = $module_query->result();
-//				$student->modules = array_column($modules, 'name');
+//				$tags = $tag_query->result();
+//				$question->tags = array_column($tags, 'tags');
 //			}
-//			return $students_array; // Return array of student data
+//			return $question_array;
 //		} else {
-//			return new stdClass(); // Return empty object if no students found
+//			return new stdClass();
 //		}
-
 	}
 
 	public function addQuestion($userid, $title, $question, $expectationQ, $category, $qaddeddate, $tagArray){
