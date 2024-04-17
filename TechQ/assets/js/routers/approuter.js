@@ -139,8 +139,8 @@ app.routers.AppRouter = Backbone.Router.extend({
 				}
 			})
 
-			app.ansQuestionView = new app.views.AnswerQuestionView({model: app.askQue});
-			app.ansQuestionView.render();
+			// app.ansQuestionView = new app.views.AnswerQuestionView({model: app.askQue});
+			// app.ansQuestionView.render();
 
 			// app.askQue.fetch({
 			// 	"url": url,

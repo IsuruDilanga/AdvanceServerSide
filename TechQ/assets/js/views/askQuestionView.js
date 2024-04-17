@@ -12,43 +12,67 @@ app.views.AddQuestionView = Backbone.View.extend({
 	events: {
 		'click #submit_question': 'submitquestion'
 	},
-	submitquestion:function(e){
+	submitquestion: function(e) {
 		e.preventDefault();
 		e.stopPropagation();
 
-		console.log('submitting question');
+		// console.log('submitting question');
+		// userJson = JSON.parse(localStorage.getItem('user'));
+		// app.user = new app.models.User(userJson);
 
-		var valiteQuestionForm = validateQuestionAddForm();
-		if(!valiteQuestionForm){
+		var validateQuestionForm = validateQuestionAddForm();
+		if (!validateQuestionForm) {
 			new Noty({
 				type: 'error',
-				text: 'Please chech the requirment satisfied or not',
+				text: 'Please check if the requirements are satisfied or not',
 				timeout: 2000
 			}).show();
-		}else{
-			this.model.set(valiteQuestionForm);
-			var url = this.model.urlAskQuestion + "addquestion";
-			console.log("url",url);
-			this.model.save(this.model.attributes, {
-				"url": url,
-				success: function(model, response){
-					console.log('success', model, response);
-					new Noty({
-						type: 'success',
-						text: 'Question added successfully',
-						timeout: 2000
-					}).show();
-					// Backbone.history.navigate('questions', {trigger: true});
+		} else {
+			var formData = new FormData();
+			var imageFile = $('#imageUpload')[0].files[0];
+			formData.append('image', imageFile);
+
+			$.ajax({
+				url: this.model.url + '/image',
+				type: 'POST',
+				data: formData,
+				processData: false,
+				contentType: false,
+				success: (response) => {
+					console.log('Image uploaded successfully:', response);
+					validateQuestionForm.questionimage = response.imagePath; // Assuming the server returns the image path
+					this.model.set(validateQuestionForm);
+					var url = this.model.urlAskQuestion + "addquestion";
+					console.log("url", url);
+					this.model.save(this.model.attributes, {
+						"url": url,
+						success: (model, response) => {
+							console.log('success', model, response);
+							new Noty({
+								type: 'success',
+								text: 'Question added successfully',
+								timeout: 2000
+							}).show();
+						},
+						error: (model, response) => {
+							console.log('error', model, response);
+							new Noty({
+								type: 'error',
+								text: 'Error adding question',
+								timeout: 2000
+							}).show();
+						}
+					});
 				},
-				error: function(model, response){
-					console.log('error', model, response);
+				error: (xhr, status, error) => {
+					console.error('Error uploading image:', error);
 					new Noty({
 						type: 'error',
-						text: 'Error adding question',
+						text: 'Error uploading image',
 						timeout: 2000
 					}).show();
 				}
-			})
+			});
 		}
 
 		$('#inputQuestionTitle').val('');
@@ -56,5 +80,7 @@ app.views.AddQuestionView = Backbone.View.extend({
 		$('#inputQuestionExpectation').val('');
 		$('#inputQuestionTags').val('');
 		$('#questionCategory').val('');
+		$('#imageUpload').val('');
 	}
+
 })

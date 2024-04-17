@@ -28,16 +28,18 @@ function validateRegisterForm() {
 	return user;
 }
 
-function validateQuestionAddForm(){
+function validateQuestionAddForm() {
 	var question = {
 		'title': $("input#inputQuestionTitle").val(),
 		'question': $("textarea#inputQuestionDetails").val(),
 		'expectationQ': $("textarea#inputQuestionExpectation").val(),
+		'questionimage': $("input#imageUpload")[0].files[0], // Store the image file directly
 		'category': $("select#questionCategory").val(),
 		'tags': $("input#inputQuestionTags").val(),
 		'qaddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
 	};
-	console.log(question);
+
+	console.log("question: " + question);
 	// Check if 'question' or 'expectationQ' has at least 20 characters
 	if (!question.question || question.question.length < 20) {
 		return false;
@@ -59,9 +61,9 @@ function validateQuestionAddForm(){
 	return question;
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 	app.appRouter = new app.routers.AppRouter();
-	$(function () {
+	$(function() {
 		Backbone.history.start();
 	});
 });

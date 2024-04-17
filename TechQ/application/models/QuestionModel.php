@@ -59,7 +59,7 @@ class QuestionModel extends CI_Model{
 //		}
 	}
 
-	public function addQuestion($userid, $title, $question, $expectationQ, $category, $qaddeddate, $tagArray){
+	public function addQuestion($userid, $title, $question, $expectationQ, $category, $qaddeddate, $tagArray, $imageurl) {
 		$this->db->trans_start(); // Start transaction
 
 		$questionData = array(
@@ -67,8 +67,9 @@ class QuestionModel extends CI_Model{
 			'title' => $title,
 			'question' => $question,
 			'expectationQ' => $expectationQ,
+			'questionimage' => $imageurl, // Ensure that the questionimage field is correctly set here
 			'category' => $category,
-			'qaddeddate' => $qaddeddate
+			'qaddeddate' => $qaddeddate,
 		);
 
 		// Insert into 'Questions' table

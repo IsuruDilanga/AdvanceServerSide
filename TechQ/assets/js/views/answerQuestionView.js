@@ -5,10 +5,13 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 
 	render:function(){
 		console.log('rendering answer question view');
-		console.log("app.attribute: " , this.model.attributes);
-		template = _.template($('#answer-question-template').html());
-		this.$el.html(template(this.model.attributes));
-
-	},
+		if (this.model) {
+			console.log("app.attribute: " , this.model.attributes);
+			template = _.template($('#answer-question-template').html());
+			this.$el.html(template(this.model.attributes));
+		} else {
+			console.error("Model is undefined");
+		}
+	}
 
 })

@@ -40,6 +40,42 @@ class User extends REST_Controller{
 		}
 	}
 
+	public function image_post() {
+		// Check if file is uploaded
+		if (!empty($_FILES['image']['name'])) {
+			// Define upload directory
+			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/';
+
+			// Create upload directory if it doesn't exist
+			if (!is_dir($uploadDir)) {
+				mkdir($uploadDir, 0777, true);
+			}
+
+			// Set upload configuration
+			$config['upload_path'] = $uploadDir;
+			$config['allowed_types'] = 'gif|jpg|png|jpeg';
+			$config['max_size'] = 1024 * 2; // 2 MB
+
+			// Load upload library
+			$this->load->library('upload', $config);
+
+			// Perform upload
+			if ($this->upload->do_upload('image')) {
+				// File uploaded successfully
+				$uploadData = $this->upload->data();
+//				$imagePath = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/' . $uploadData['file_name'];
+				$imagePath = '../../assets/images/' . $uploadData['file_name'];
+				$this->response(array('imagePath' => $imagePath), REST_Controller::HTTP_OK);
+			} else {
+				// Error uploading file
+				$this->response(array('error' => $this->upload->display_errors()), REST_Controller::HTTP_BAD_REQUEST);
+			}
+		} else {
+			// No file uploaded
+			$this->response(array('error' => 'No image file provided'), REST_Controller::HTTP_BAD_REQUEST);
+		}
+	}
+
 	public function register_post(){
 		$_POST = json_decode(file_get_contents("php://input"), true);
 		$this->form_validation->set_rules('username', 'checkUsername', 'required');

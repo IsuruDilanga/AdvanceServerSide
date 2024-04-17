@@ -255,6 +255,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<div class="question-title">
+		<p class="topic">Upload Image</p>
+		<p style="font-size: 12px">Upload an image related to your question (optional)</p>
+		<input type="file" class="form-control-file" id="imageUpload" name="imageUpload">
+		<!-- Optionally, include a preview section here -->
+	</div>
+
+	<div class="question-title">
 		<p class="topic">Tags</p>
 		<p style="font-size: 12px">Add up to 5 tags to describe what your question is about. Start typing to see suggestion </p>
 		<input type="text" class="form-control form-title" placeholder="e.g. (javascript, react, nodejs)"
@@ -324,6 +331,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="ans-question">
 		<h4><%= question %></h4>
 		<p><%= expectationQ %></p>
+<!--		<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
+		<img src="<%= questionimage %>" alt="Question Image">
 	</div>
 
 
