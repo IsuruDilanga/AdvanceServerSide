@@ -112,11 +112,6 @@ app.routers.AppRouter = Backbone.Router.extend({
 		console.log("user"+userJson);
 		if(userJson != null){
 			app.user = new app.models.User(userJson);
-			// app.askQue = new app.models.Questions({question_id: questionid, usename: app.user.get("username")});
-
-			console.log("app.user :" , app.user);
-			console.log("app.askQue :" , app.askQue);
-			console.log("if");
 
 			var url = app.user.urlAskQuestion + "displayAllQuestions/" + questionid;
 
@@ -126,14 +121,56 @@ app.routers.AppRouter = Backbone.Router.extend({
 					console.log("sucess");
 					response['username'] = app.user.get("username");
 					var questionModel = new app.models.Questions(response);
-					app.ansQuestionView = new app.views.AnswerQuestionView({ model: questionModel });
-					app.ansQuestionView.render();
+
+					app.ansQuestionView = new app.views.AnswerQuestionView({
+						model: questionModel,
+						collection: new app.collections.AnswerCollection()
+					});
+
+					var answerUrl = app.ansQuestionView.collection.url + "getAnswers/" + questionid;
+
+					app.ansQuestionView.collection.fetch({
+						reset: true,
+						"url": answerUrl,
+						success: function(collection, response) {
+							console.log("response: " + response);
+							app.ansQuestionView.render();
+						},
+						error: function(model, xhr, options) {
+							if (xhr.status == 404) {
+								console.log("error 404");
+							}
+						}
+					});
+
+					// app.ansQuestionView = new app.views.AnswerQuestionView({ model: questionModel });
+					//
+					// app.answerView = new app.views.AnswerQuestionView({collection: new app.collections.AnswerCollection()});
+					// var answerUrl = app.answerView.collection.url + "getAnswers/" + questionid;
+					//
+					// app.answerView.collection.fetch({
+					// 	reset: true,
+					// 	"url": answerUrl,
+					// 	success: function(collection, response){
+					// 		console.log("response: "+ response);
+					// 		// app.answerView.render();
+					// 	},
+					// 	error: function(model, xhr, options){
+					// 		if(xhr.status == 404){
+					// 			console.log("error 404");
+					// 			// app.answerView.render();
+					// 		}
+					// 		// console.log("error");
+					// 	}
+					// });
+					//
+					// app.ansQuestionView.render();
 				},
 				error: function(model, xhr, options){
 					if(xhr.status == 404){
 						console.log("error 404");
 						// app.ansQuestionView = new app.views.AnswerQuestionView({model: app.askQue});
-						app.ansQuestionView.render();
+						// app.ansQuestionView.render();
 					}
 					console.log("error");
 				}

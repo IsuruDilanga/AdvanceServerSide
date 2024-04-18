@@ -16,6 +16,7 @@ app.models.Questions = Backbone.Model.extend({
 		qaddeddate:null
 	},
 	url: '/TechQ/index.php/api/Question/',
+	urlAns: '/TechQ/index.php/api/Answer/',
 
 });
 

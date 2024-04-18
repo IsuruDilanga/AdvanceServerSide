@@ -256,7 +256,6 @@ body {
 
 .ans-question-title h3{
 	font-size: 32px;
-	margin-top: 150px
 }
 
 .ans-question h4{
@@ -269,6 +268,74 @@ body {
 	font-size: 16px;
 	text-align: justify;
 }
+
+#questionrate{
+	width: 200px;
+	font-family: "Poppins", sans-serif;
+	border-radius: 10px;
+}
+
+.sub-answer{
+	margin: 20px auto;
+	display: flex;
+	gap: 50px;
+}
+
+.existing-answer-area{
+	margin-top: 50px;
+	font-family: "Poppins", sans-serif;
+	text-align: justify;
+	/*border: 1px solid;*/
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: white;
+	border-radius: 10px;
+	/*height: 800px;*/
+	padding: 20px;
+}
+
+.existing-answer-area h1{
+	color: #040b56;
+}
+
+.question-display{
+	margin-top: 150px;
+	text-align: justify;
+	/*border: 1px solid;*/
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: white;
+	border-radius: 10px;
+	/*height: 800px;*/
+	padding: 20px;
+}
+
+.top-answers{
+	font-size: 30px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+}
+
+.ex-answer{
+	background-color: #f1f1f1;
+	padding: 10px;
+	box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+	/*border: 1px solid;*/
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+.ans-que{
+	margin-top: 20px;
+	text-align: justify;
+	/*border: 1px solid;*/
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: white;
+	border-radius: 10px;
+	/*height: 800px;*/
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+
 
 
 

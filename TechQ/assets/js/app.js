@@ -28,6 +28,20 @@ function validateRegisterForm() {
 	return user;
 }
 
+function validateAnswerForm() {
+	var answer = {
+		'answer': $("textarea#inputQuestionDetails").val(),
+		'answerimage': $("input#answerImageUpload")[0].files[0],
+		'aaddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
+	};
+
+	if (!answer.answer) {
+		return false;
+	}
+
+	return answer;
+}
+
 function validateQuestionAddForm() {
 	var question = {
 		'title': $("input#inputQuestionTitle").val(),

@@ -23,6 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="../../assets/js/views/questionView.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/askQuestionView.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/answerQuestionView.js" type="text/javascript"></script>
+	<script src="../../assets/js/Models/answer.js" type="text/javascript"></script>
+	<script src="../../assets/js/views/answerView.js" type="text/javascript"></script>
 
 	<!-- Adding CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -323,20 +325,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 <!--	<h1>answer Question Page</h1>-->
-	<div class="ans-question-title">
-		<h3 class="answer"><%= title %></h3>
-		<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>
+	<div class="question-display">
+		<div class="ans-question-title">
+			<h3 class="answer"><%= title %></h3>
+			<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>
+		</div>
+
+		<div class="ans-question">
+			<h4><%= question %></h4>
+			<p><%= expectationQ %></p>
+			<!--		<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
+			<img src="<%= questionimage %>" alt="Question Image">
+		</div>
 	</div>
 
-	<div class="ans-question">
-		<h4><%= question %></h4>
-		<p><%= expectationQ %></p>
-<!--		<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
-		<img src="<%= questionimage %>" alt="Question Image">
+	<div class="existing-answer-area" id="answer">
+		<div class="top-answers" style="display: flex; justify-content: space-between; align-items: center;">
+			<h1>Answers</h1>
+		</div>
 	</div>
 
+	<div class="ans-que">
+		<div class="question-title">
+			<p class="topic">Your Answer</p>
+
+			<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"
+					  rows="3" required></textarea>
+		</div>
+
+		<div class="question-title">
+			<p class="topic">Upload Image</p>
+			<p style="font-size: 12px">Upload an image related to your Answer (optional)</p>
+			<input type="file" class="form-control-file" id="answerImageUpload" name="answerImageUpload">
+			<!-- Optionally, include a preview section here -->
+		</div>
+
+		<div class="sub-answer">
+			<button type="submit" id="submit_answer" class="btn btn-primary ans-subbtn">Submit Answer</button>
+			<select class="form-control" required autofocus id="questionrate">
+				<option value="" selected disabled>Rate for Question</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+		</div>
+	</div>
 
 </script>
+
+<script type="text/template" id="answer-template">
+	<div class="one-question ex-answer">
+		<p> <%= answer %> </p>
+		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">
+		<p style="margin-top: 10px"><strong>Rate : </strong><%= rate %></p>
+	</div>
+</script>
+
+
+
 
 </body>
 </html>

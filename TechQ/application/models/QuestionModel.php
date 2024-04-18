@@ -3,6 +3,8 @@
 class QuestionModel extends CI_Model{
 
 	public function getAllQuestions(){
+		log_message('debug', 'getAllQuestions() called');
+//		$this->logger->debug('getAllQuestions() called');
 
 		$question = $this->db->get("Questions");
 		if($question->num_rows() > 0){

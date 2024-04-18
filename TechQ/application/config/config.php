@@ -226,7 +226,7 @@ $config['allow_get_array'] = TRUE;
 |
 */
 $config['log_threshold'] = 4;
-$config['log_class'] = 'My_Logger';
+//$config['log_class'] = 'My_Logger';
 
 
 /*
@@ -238,7 +238,8 @@ $config['log_class'] = 'My_Logger';
 | application/logs/ directory. Use a full server path with trailing slash.
 |
 */
-$config['log_path'] = '';
+//$config['log_path'] = '';
+$config['log_path'] = FCPATH . '/application/logs/';
 
 /*
 |--------------------------------------------------------------------------

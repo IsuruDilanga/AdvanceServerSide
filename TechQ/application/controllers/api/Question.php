@@ -12,6 +12,7 @@ class Question extends REST_Controller{
 	}
 
 	public function displayAllQuestions_get($question_id = FALSE){
+		log_message('debug', 'Question::displayAllQuestions_get() - $question_id: ' . $question_id);
 
 		if ($question_id === FALSE) {
 			$questions = $this->QuestionModel->getAllQuestions();
@@ -54,7 +55,8 @@ class Question extends REST_Controller{
 		// Check if an image file is uploaded
 		if (!empty($_FILES['image']['name'])) {
 			// Define upload directory and file name
-			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/';
+//			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/';
+			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/question/';
 			$uploadFile = $uploadDir . basename($_FILES['image']['name']);
 
 			// Attempt to move uploaded file to specified directory

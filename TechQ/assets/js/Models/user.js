@@ -10,5 +10,6 @@ app.models.User = Backbone.Model.extend({
 	},
 	url: '/TechQ/index.php/api/User/',
 	urlAskQuestion: '/TechQ/index.php/api/Question/',
+	urlAnswerQuestion: '/TechQ/index.php/api/Answer/'
 
 });

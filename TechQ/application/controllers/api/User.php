@@ -40,21 +40,19 @@ class User extends REST_Controller{
 		}
 	}
 
-	public function image_post() {
+	public function ask_question_image_post() {
 		// Check if file is uploaded
 		if (!empty($_FILES['image']['name'])) {
 			// Define upload directory
-			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/';
+			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/question/';
 
-			// Create upload directory if it doesn't exist
-			if (!is_dir($uploadDir)) {
-				mkdir($uploadDir, 0777, true);
-			}
+			log_message('debug', 'uploadDir: ' . $uploadDir);
+
 
 			// Set upload configuration
 			$config['upload_path'] = $uploadDir;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['max_size'] = 1024 * 2; // 2 MB
+			$config['max_size'] = 1024 * 10; // 2 MB
 
 			// Load upload library
 			$this->load->library('upload', $config);
@@ -64,7 +62,7 @@ class User extends REST_Controller{
 				// File uploaded successfully
 				$uploadData = $this->upload->data();
 //				$imagePath = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/' . $uploadData['file_name'];
-				$imagePath = '../../assets/images/' . $uploadData['file_name'];
+				$imagePath = '../../assets/images/question/' . $uploadData['file_name'];
 				$this->response(array('imagePath' => $imagePath), REST_Controller::HTTP_OK);
 			} else {
 				// Error uploading file
