@@ -70,8 +70,7 @@ class User extends REST_Controller{
 			}
 		} else {
 			// No file uploaded
-			$this->response(array('error' => 'No image file provided'), REST_Controller::HTTP_BAD_REQUEST);
-		}
+			$this->response(array('imagePath' => ''), REST_Controller::HTTP_OK);		}
 	}
 
 	public function register_post(){

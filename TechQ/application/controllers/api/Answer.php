@@ -14,29 +14,30 @@ class Answer extends REST_Controller{
 	public function getAnswers_get($questionid){
 		$answers = $this->AnswerModel->getAnswers($questionid);
 
+//		$this->response($answers, REST_Controller::HTTP_OK);
 		if (!empty($answers)) {
 			$this->response($answers, REST_Controller::HTTP_OK);
 		} else {
-			$this->response(array(
-				'status' => FALSE,
-				'message' => 'No questions found.'
-			), REST_Controller::HTTP_NOT_FOUND);
+			$this->response(array(), REST_Controller::HTTP_OK);
+//			$this->response(array(
+//				'status' => FALSE,
+//				'message' => 'No questions found.'
+//			), REST_Controller::HTTP_NOT_FOUND);
 		}
 	}
 
 	public function ans_image_post() {
-		// Check if file is uploaded
-		if (!empty($_FILES['image']['name'])) {
+		// Check if file is uploaded and it's not empty
+		if (isset($_FILES['image']) && $_FILES['image']['size'] > 0) {
 			// Define upload directory
 			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/answer/';
 
 			log_message('debug', 'uploadDir: ' . $uploadDir);
 
-
 			// Set upload configuration
 			$config['upload_path'] = $uploadDir;
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			$config['max_size'] = 1024 * 10; // 2 MB
+			$config['max_size'] = 1024 * 10; // 10 MB
 
 			// Load upload library
 			$this->load->library('upload', $config);
@@ -45,27 +46,32 @@ class Answer extends REST_Controller{
 			if ($this->upload->do_upload('image')) {
 				// File uploaded successfully
 				$uploadData = $this->upload->data();
-//				$imagePath = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/' . $uploadData['file_name'];
-				$imagePath = '../../assets/images/answer/' . $uploadData['file_name'];
+				// Adjust imagePath relative to the URL structure
+				$imagePath = base_url('assets/images/answer/' . $uploadData['file_name']);
 				$this->response(array('imagePath' => $imagePath), REST_Controller::HTTP_OK);
 			} else {
 				// Error uploading file
 				$this->response(array('error' => $this->upload->display_errors()), REST_Controller::HTTP_BAD_REQUEST);
 			}
 		} else {
-			// No file uploaded
-			$this->response(array('error' => 'No image file provided'), REST_Controller::HTTP_BAD_REQUEST);
+			// No file uploaded, return a default image path or an empty response
+			$this->response(array('imagePath' => ''), REST_Controller::HTTP_OK);
 		}
 	}
+
 
 	public function add_answer_post(){
 		$_POST = json_decode(file_get_contents("php://input"), true);
 
 		$questionid = strip_tags($this->post('questionid'));
 		$userid = strip_tags($this->post('userid'));
-		$answer = strip_tags($this->post('answer'));
+
+//		$answer = strip_tags($this->post('answer'));
+		$answer = $this->post('answer');
+
 		$imageurl = strip_tags($this->post('answerimage'));
 		$answeraddreddate = strip_tags($this->post('aaddeddate'));
+		$rate = strip_tags($this->post('rate'));
 
 		// Initialize answerimage variable
 		$answerimage = '';
@@ -84,7 +90,7 @@ class Answer extends REST_Controller{
 		}
 
 		if (!empty($questionid) && !empty($userid) && !empty($answer) && !empty($answeraddreddate)) {
-			$result = $this->AnswerModel->addAnswer($questionid, $userid, $answer, $answeraddreddate, $imageurl);
+			$result = $this->AnswerModel->addAnswer($questionid, $userid, $answer, $answeraddreddate, $imageurl, $rate);
 			if ($result) {
 				$this->response(array(
 					'status' => TRUE,

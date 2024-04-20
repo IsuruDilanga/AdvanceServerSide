@@ -332,16 +332,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="ans-question">
-			<h4><%= question %></h4>
+			<p><%= question %></p>
 			<p><%= expectationQ %></p>
 			<!--		<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
-			<img src="<%= questionimage %>" alt="Question Image">
+			<% if (questionimage !== '') { %>
+				<img src="<%= questionimage %>" alt="Question Image">
+			<% } %>
 		</div>
 	</div>
 
-	<div class="existing-answer-area" id="answer">
+
+	<div class="existing-answer-area" id="answer" style="display: none">
 		<div class="top-answers" style="display: flex; justify-content: space-between; align-items: center;">
-			<h1>Answers</h1>
+<!--			<h1>Answers</h1>-->
 		</div>
 	</div>
 
@@ -378,8 +381,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/template" id="answer-template">
 	<div class="one-question ex-answer">
 		<p> <%= answer %> </p>
-		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">
-		<p style="margin-top: 10px"><strong>Rate : </strong><%= rate %></p>
+		<% if (answerimage !== '') { %>
+		<img src="<%= answerimage %>" alt="Answer Image">
+		<% } %>
+<!--		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">-->
+		<p style="margin-top: 10px"><strong>Rate : </strong><%= answerrate %>  <strong>Added Date: </strong></p>
 	</div>
 </script>
 

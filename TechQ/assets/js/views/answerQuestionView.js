@@ -27,13 +27,7 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 
 		var validateAnswer = validateAnswerForm();
 
-		if(!validateAnswer){
-			new Noty({
-				type: 'error',
-				text: 'Please check if the requirements are satisfied or not',
-				timeout: 2000
-			}).show();
-		}else {
+		if (validateAnswer){
 			console.log('answer is valid');
 			var formData = new FormData();
 			var imageFIle  = $('#answerImageUpload')[0].files[0];
@@ -67,7 +61,7 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 							}).show();
 
 							this.collection.add(model);
-
+							console.log('model: ', model);
 							// Create and render a new view for the added answer
 							var newAnswerView = new app.views.AnswerView({ model: model });
 							newAnswerView.render();
@@ -94,7 +88,16 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 
 			$('#inputQuestionDetails').val('');
 			$('#answerImageUpload').val('');
-
+			$('#questionrate').val('');
+		}else{
+			setTimeout(function() {
+				new Noty({
+					type: 'error',
+					text: 'Please check if the requirements are satisfied or not',
+					timeout: 2000
+				}).show();
+				console.log('answer is not valid');
+			}, 1500);
 		}
 	}
 

@@ -11,6 +11,7 @@ app.models.Questions = Backbone.Model.extend({
 		category: null,
 		tags: null,
 		rate:null,
+		answerrate:null,
 		bookmark:null,
 		viewstatus:null,
 		qaddeddate:null

@@ -30,8 +30,9 @@ function validateRegisterForm() {
 
 function validateAnswerForm() {
 	var answer = {
-		'answer': $("textarea#inputQuestionDetails").val(),
+		'answer': $("textarea#inputQuestionDetails").val().replace(/\n/g, '<br>'),
 		'answerimage': $("input#answerImageUpload")[0].files[0],
+		'rate': $("select#questionrate").val(),
 		'aaddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
 	};
 

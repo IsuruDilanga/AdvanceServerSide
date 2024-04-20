@@ -6,6 +6,10 @@ app.views.AnswerView = Backbone.View.extend({
 	render: function(){
 		console.log('rendering answer view')
 		template = _.template($('#answer-template').html())
+		if (this.$el.find('h1').length === 0) {
+			this.$el.append('<h1>Answers</h1>');
+			this.$el.css('display', 'block');
+		}
 		this.$el.append(template(this.model.attributes));
 	}
 })

@@ -10,11 +10,44 @@ class AnswerModel extends CI_Model{
 		if($answer->num_rows() > 0) {
 			return $answer->result();
 		}else{
+//			$answer = array(
+//				'questionid' => $questionid,
+//				'answer' => '',
+//				'answerimage' => '',
+//				'answeraddeddate' => ''
+//			);
+//			return $answer;
 			return null;
 		}
 	}
 
-	public function addAnswer($questionid, $userid, $answer, $answeraddreddate, $imageurl){
+	public function addAnswer($questionid, $userid, $answer, $answeraddreddate, $imageurl, $rate){
+
+		$rate = floatval($rate);
+
+		$pastRateResult = $this->db->select('rate')
+							->from('Questions')
+							->where('questionid', $questionid)
+							->get();
+
+		if ($pastRateResult->num_rows() > 0 && $rate > 0) {
+			// Extract the rate from the result
+			$pastRate = $pastRateResult->row()->rate;
+
+			// Convert the past rate from string to double
+			$pastRate = floatval($pastRate);
+
+			if ($pastRate == 0) {
+				$pastRate = $rate;
+			}
+
+			// Calculate the new rate
+			$rate = ($rate + $pastRate) / 2;
+		}
+
+		// Update the rate in the Questions table
+		$this->db->where('questionid', $questionid)
+			->update('Questions', array('rate' => $rate));
 
 		$answerData = array(
 			'questionid' => $questionid,

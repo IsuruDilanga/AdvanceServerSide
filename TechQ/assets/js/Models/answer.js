@@ -8,7 +8,9 @@ app.models.Answers = Backbone.Model.extend({
 		userid: null,
 		answer: null,
 		answerimage: null,
+		answerrate: null,
 		rate: null,
+		questionrate: null,
 		viewstatus: null,
 		answeraddeddate: null
 	},
