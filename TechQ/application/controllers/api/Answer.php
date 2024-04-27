@@ -47,7 +47,9 @@ class Answer extends REST_Controller{
 				// File uploaded successfully
 				$uploadData = $this->upload->data();
 				// Adjust imagePath relative to the URL structure
-				$imagePath = base_url('assets/images/answer/' . $uploadData['file_name']);
+//				$imagePath = base_url('assets/images/answer/' . $uploadData['file_name']);
+				$imagePath = '../../assets/images/answer/' . $uploadData['file_name'];
+
 				$this->response(array('imagePath' => $imagePath), REST_Controller::HTTP_OK);
 			} else {
 				// Error uploading file
@@ -70,7 +72,7 @@ class Answer extends REST_Controller{
 		$answer = $this->post('answer');
 
 		$imageurl = strip_tags($this->post('answerimage'));
-		$answeraddreddate = strip_tags($this->post('aaddeddate'));
+		$answeraddreddate = strip_tags($this->post('answeraddeddate'));
 		$rate = strip_tags($this->post('rate'));
 
 		// Initialize answerimage variable

@@ -31,6 +31,18 @@ class Question extends REST_Controller{
 		}
 	}
 
+	public function bookmarkQuestions_get($userid){
+		$questions = $this->QuestionModel->getBookmarkQuestions($userid);
+		if($questions) {
+			$this->response($questions, REST_Controller::HTTP_OK);
+		} else {
+			$this->response(array(
+				'status' => FALSE,
+				'message' => 'No bookmarked questions found.'
+			), REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
 	public function displaySearchQuestions_get($searchWord = FALSE){
 		log_message('debug', 'Question::displaySearchQuestions_get() - $searchWord: ' . $searchWord);
 

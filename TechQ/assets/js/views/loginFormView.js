@@ -68,6 +68,7 @@ app.views.LoginFormView = Backbone.View.extend({
 		if (!validateForm) {
 			$("#errSign").html("Please fill the form");
 		} else {
+			console.log("validateForm: ");
 			this.model.set(validateForm);
 			var url = this.model.url + "register";
 			this.model.save(this.model.attributes, {
@@ -103,6 +104,9 @@ app.views.LoginFormView = Backbone.View.extend({
 		$('#regUsername').val('');
 		$('#regPassword').val('');
 		$('#regOccupation').val('');
+		$('#regName').val('');
+		$('#regEmail').val('');
+
 	}
 
 });

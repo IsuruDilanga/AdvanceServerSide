@@ -14,7 +14,8 @@ app.models.Questions = Backbone.Model.extend({
 		answerrate:null,
 		is_bookmark:null,
 		viewstatus:null,
-		qaddeddate:null
+		qaddeddate:null,
+		answeraddeddate:null,
 	},
 	url: '/TechQ/index.php/api/Question/',
 	urlAns: '/TechQ/index.php/api/Answer/',

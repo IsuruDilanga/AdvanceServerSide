@@ -20,12 +20,22 @@ function validateRegisterForm() {
 	var user = {
 		'username': $("input#regUsername").val(),
 		'password': $("input#regPassword").val(),
-		'occupation': $("select#regOccupation").val()
+		'occupation': $("select#regOccupation").val(),
+		'name': $("input#regName").val(),
+		'email': $("input#regEmail").val(),
 	};
-	if (!user.username || !user.password || !user.occupation) {
+	if (!user.username || !user.password || !user.occupation || !user.name || !user.email) {
 		return false;
 	}
 	return user;
+}
+
+function validateUpdateUserProfileForm() {
+	var userImg = {
+		'userimage': $("input#upload_image_input")[0].files[0]
+	};
+
+	return userImg;
 }
 
 function validateAnswerForm() {
@@ -33,7 +43,7 @@ function validateAnswerForm() {
 		'answer': $("textarea#inputQuestionDetails").val().replace(/\n/g, '<br>'),
 		'answerimage': $("input#answerImageUpload")[0].files[0],
 		'rate': $("select#questionrate").val(),
-		'aaddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
+		'answeraddeddate': new Date().toISOString().slice(0, 19).replace('T', ' ')
 	};
 
 	if (!answer.answer) {
@@ -54,6 +64,25 @@ function validateSearchForm(){
 
 	return search;
 
+}
+
+function validateEditUserDetailsAddForm(){
+	// Remove disabled attribute temporarily
+
+	var editUser = {
+		'username': $("input#editusername").val(),
+		'name': $("input#editname").val(),
+		'email': $("input#editemail").val(),
+		'occupation': $("select#editOccupation").val()
+	};
+
+	// Restore disabled attribute
+
+	if (!editUser.username || !editUser.name || !editUser.email || !editUser.occupation) {
+		return false;
+	}
+
+	return editUser;
 }
 
 function validateQuestionAddForm() {

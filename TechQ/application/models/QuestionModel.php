@@ -178,12 +178,35 @@ class QuestionModel extends CI_Model{
 		return $bookmark;
 	}
 
-public function addBookmark($questionid, $userid){
+	public function addBookmark($questionid, $userid){
 		$bookmarkData = array(
 			'questionid' => $questionid,
 			'userid' => $userid
 		);
 		$bookmark = $this->db->insert('BookmarkQue', $bookmarkData);
 		return $bookmark;
+	}
+
+	public function getBookmarkQuestions($userid){
+		$this->db->select('Questions.*');
+		$this->db->from('Questions');
+		$this->db->join('BookmarkQue', 'Questions.questionid = BookmarkQue.questionid');
+		$this->db->where('BookmarkQue.userid', $userid);
+		$question = $this->db->get();
+		if($question->num_rows() > 0){
+			$question_array = $question->result();
+			foreach ($question_array as $question) {
+				$question_id = $question->questionid;
+				$tag_query = $this->db->select('tags')
+					->from('Tags')
+					->where('questionid', $question_id)
+					->get();
+				$tags = $tag_query->result();
+				$question->tags = array_column($tags, 'tags');
+			}
+			return $question_array;
+		}else{
+			return new stdClass();
+		}
 	}
 }

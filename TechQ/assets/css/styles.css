@@ -1,5 +1,5 @@
 :root {
-	--input-padding-x: 1.5rem;
+	--input-padding-x: 20px;
 	--input-padding-y: .75rem;
 }
 
@@ -8,6 +8,12 @@ body {
 	font-family: "Poppins", sans-serif;
 	letter-spacing: 1px;
 	font-size: 16px;
+}
+
+.container{
+	padding: 0;
+	/*margin-left: 0;*/
+	/*margin-right: 0;*/
 }
 
 .form-signin {
@@ -198,15 +204,38 @@ body {
 	font-weight: 600;
 }
 
+.question-area{
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: #e4fdfd;
+	border-radius: 10px;
+	margin-top: 150px;
+	padding: 20px;
+}
+
 .question-area .top-questions{
-	margin-top: 130px;
+	/*margin-top: 130px;*/
 	font-size: 30px;
 	font-family: "Poppins", sans-serif;
 	font-weight: 600;
 }
 
+.one-question{
+	/*background-color: red;*/
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	/*gap: 20px;*/
+	margin-top: 20px;
+	transition: transform 0.5s;
+}
+
+.one-question:hover{
+	transform: scale(1.02);
+}
+
 .one-question .single-question{
-	margin-top: 50px;
+	/*margin-top: 50px;*/
 	font-size: 30px;
 	font-family: "Poppins", sans-serif;
 	font-weight: 600;
@@ -383,6 +412,71 @@ body {
 	margin-left: -100px;
 }
 
+.user-details{
+	background-color: white;
+	padding: 30px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.user-details span{
+	font-size: 30px;
+	font-family: "Poppins", sans-serif;
+	font-weight: 600;
+}
+
+.user-details input{
+	font-size: 16px;
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 0;
+	margin-left: 10px;
+	width: 400px;
+	padding: 10px;
+	border-radius: 7px;
+	border: 1px solid black;
+}
+
+.user-occupation{
+	font-size: 16px;
+	font-family: "Poppins", sans-serif;
+	margin-bottom: 0;
+	margin-left: 10px;
+	width: 400px;
+	padding: 10px;
+}
+
+.user-row{
+	margin-top: 200px;
+}
+
+.user-details table tr td{
+	padding: 10px;
+
+}
+
+.col-sm-4 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;	/*height: 100vh; */
+	background-color: #5fd4f5;
+}
+
+.user-image img {
+	width: 300px;
+	height: 300px;
+	border: 2px solid black;
+	border-radius: 20%;
+}
+
+.edit-btns{
+	margin-top: 40px;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	gap: 30px;
+}
+
 
 
 
@@ -546,7 +640,7 @@ table.table td .add {
 }
 
 .nav-color {
-	background-color: #3086e4;
+	background-color: #033c73;
 	/*padding: 15px 100px;*/
 }
 

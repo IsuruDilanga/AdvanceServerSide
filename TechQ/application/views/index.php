@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="../../assets/js/views/answerQuestionView.js" type="text/javascript"></script>
 	<script src="../../assets/js/Models/answer.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/answerView.js" type="text/javascript"></script>
+	<script src="../../assets/js/views/bookmarkView.js" type="text/javascript"></script>
+	<script src="../../assets/js/views/userView.js" type="text/javascript"></script>
 
 	<!-- Adding CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -57,6 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div class="nav_container"></div>
+
 <div class="container" style="margin-top: 70px;"></div>
 
 <script type="text/template" id="login_template">
@@ -111,11 +114,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <input type="text" class="form-control" placeholder="Enter username"
                                                required autofocus id="regUsername">
                                     </div>
+									<div class="form-label-group">
+										<input type="text" class="form-control" placeholder="Enter your name"
+											   required autofocus id="regName">
+									</div>
+									<div class="form-label-group">
+										<input type="email" class="form-control" placeholder="Enter your email"
+											   required autofocus id="regEmail">
+									</div>
                                     <div class="form-label-group">
                                         <input type="password" id="regPassword" class="form-control"
                                                placeholder="Password"
                                                required name="password">
                                     </div>
+
 									<div class="form-label-group">
 										<select class="form-control" required autofocus id="regOccupation">
 											<option value="" selected disabled>Please select</option>
@@ -149,14 +161,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="collapse navbar-collapse" id="navbarToggler">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=username%>
+						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
+							<i class="fa-solid fa-user"></i> <%=name%>
 						</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="font-size: 30px">
-						<a href="#" style="text-decoration: none; color: white">
+<!--						#home/bookmark/<%=user_id%>-->
+						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
 							<i class="fa-regular fa-bookmark"></i>
 						</a>
 					</li>
@@ -173,10 +186,101 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div class="question-area" id="question">
 		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
-			<h1>Top Questions</h1>
+			<h1><strong>Top Questions</strong></h1>
 			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
 		</div>
 		<hr>
+	</div>
+
+</script>
+
+<script type="text/template" id="user_template">
+
+	<div class="header" style="position:absolute;top:0;left:0;width:100%">
+		<nav class="navbar navbar-expand-lg navbar-light nav-color">
+			<a class="navbar-brand" href="#">Tech'Q</a>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
+			</form>
+
+			<div class="collapse navbar-collapse" id="navbarToggler">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-username" style="font-size: 20px; cursor: pointer">
+						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
+							<i class="fa-solid fa-user"></i> <%=username%>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li style="font-size: 30px">
+						<!--						#home/bookmark/<%=user_id%>-->
+						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
+							<i class="fa-regular fa-bookmark"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
+						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+				</ul>
+
+			</div>
+		</nav>
+	</div>
+
+	<div class="container">
+		<div class="row user-row">
+			<div class="col-sm-8" >
+				<div class="user-details">
+					<table>
+						<tr>
+							<td><span>User Name </span></td>
+							<td><input type="text" value="<%=username%>" disabled id="editusername"></td>
+						</tr>
+						<tr>
+							<td><span>Display Name </span></td>
+							<td><input type="text" value="<%=name%>" disabled id="editname"></td>
+						</tr>
+						<tr>
+							<td><span>Email </span></td>
+							<td><input type="email" value="<%=email%>" disabled id="editemail"></td>
+						</tr>
+						<tr>
+							<td><span>Occupation </span></td>
+<!--							<td><p>: <%=occupation%></p></td>-->
+							<td>
+								<select class="user-occupation" disabled id="editOccupation">
+									<option value="<%=occupation%>"><%=occupation%></option>
+									<option value="student">Student</option>
+									<option value="employee">Employee</option>
+								</select>
+							</td>
+						</tr>
+
+					</table>
+
+					<div class="edit-btns">
+						<button type="button" class="btn btn-primary" id="edit_userdetails_btn">Edit User Details</button>
+						<button type="button" class="btn btn-primary" id="edit_userpassword_btn">Change Password</button>
+						<button type="button" class="btn btn-primary" id="edit_userchangedp_btn">Change Profile Pic</button>
+						<input type="file" id="upload_image_input" style="display: none;" accept="image/*">
+
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-4">
+				<div class="user-image">
+					<% if (userimage != "") { %>
+						<img src="<%=userimage%>" alt="User Image" >
+					<% } else { %>
+						<img src="../../assets/images/userimage/face-scan.png" alt="User Image" >
+					<% } %>
+				</div>
+
+			</div>
+		</div>
 	</div>
 
 </script>
@@ -191,9 +295,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<p><%= tag %></p>
 			</div>
 			<% }); %>
-			<p>rate: <%= rate %></p>
+			<p><strong>rate:</strong> <%= rate %></p>
 		</div>
-		<hr>
 	</div>
 </script>
 
@@ -310,6 +413,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</ul>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="font-size: 20px">
+
 						<a href="#" style="text-decoration: none; color: white">
 							<i class="fa-regular fa-bookmark"></i>
 						</a>
@@ -427,7 +531,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 </script>
 
+<script type="text/template" id="bookmark_View">
 
+	<div class="header" style="position:absolute;top:0;left:0;width:100%">
+		<nav class="navbar navbar-expand-lg navbar-light nav-color">
+			<a class="navbar-brand" href="#">Tech'Q</a>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
+			</form>
+
+			<div class="collapse navbar-collapse" id="navbarToggler">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li class="nav-username" style="font-size: 20px; cursor: pointer">
+						<a href="#" style="text-decoration: none; color: white">
+							<i class="fa-solid fa-user"></i> <%=username%>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li style="font-size: 30px">
+						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
+							<i class="fa-regular fa-bookmark"></i>
+						</a>
+					</li>
+				</ul>
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
+						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+				</ul>
+
+			</div>
+		</nav>
+
+	</div>
+
+	<div class="question-area" id="question">
+		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
+			<h1>Bookmark Questions</h1>
+			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
+		</div>
+		<hr>
+	</div>
+
+</script>
 
 
 </body>

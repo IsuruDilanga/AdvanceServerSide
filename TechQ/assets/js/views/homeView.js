@@ -16,8 +16,9 @@ app.views.homeView = Backbone.View.extend({
 	},
 	events:{
 		"click #ask_question_btn": "ask_question",
-		"click #homesearch": "home_search"
+		"click #homesearch": "home_search",
 	},
+
 	ask_question: function(e){
 		e.preventDefault();
 		e.stopPropagation();
