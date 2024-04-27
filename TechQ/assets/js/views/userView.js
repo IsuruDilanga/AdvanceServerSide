@@ -15,11 +15,120 @@ app.views.UserView = Backbone.View.extend({
 		'click #edit_userpassword_btn': 'changePassword',
 		'click #edit_userchangedp_btn': 'chooseProfilePic',
 		'change #upload_image_input': 'uploadImage',
+		'click #submitPasswordChange': 'submitPasswordChange',
 	},
 
+	submitPasswordChange: function (){
+		console.log("submitPasswordChange");
+		userJson = JSON.parse(localStorage.getItem("user"));
+		var user_id = userJson['user_id'];
+
+		$oldPassword = $("input#oldPassword").val();
+		$newPassword = $("input#newPassword").val();
+		$confirmPassword = $("input#confirmPassword").val();
+
+		if($newPassword != $confirmPassword){
+			new Noty({
+				type: 'error',
+				text: 'New password and confirm password do not match',
+				timeout: 2000
+			}).show();
+		}else{
+			var userPass = {
+				'user_id': user_id,
+				'oldpassword': $("input#oldPassword").val(),
+				'newpassword': $("input#newPassword").val(),
+				'confirmpassword': $("input#confirmPassword").val()
+			};
+
+			var url = this.model.url + "change_password";
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: userPass,
+				success: (response) =>{
+					console.log("response", response);
+					if(response.status === true){
+						new Noty({
+							type: 'success',
+							text: 'Password changed successfully',
+							timeout: 2000
+						}).show();
+						$('#passwordModal').modal('hide');
+					}else if(response.status === false){
+						new Noty({
+							type: 'error',
+							text: 'Old password is incorrect',
+							timeout: 2000
+						}).show();
+					}
+				},
+				error: function(response){
+					console.error("Error:", response);
+					new Noty({
+						type: 'error',
+						text: 'Failed to update password. Please try again.',
+						timeout: 2000
+					}).show();
+				}
+
+			})
+
+		}
+
+
+
+		// var validateChangePassword = validateChangePasswordForm();
+		//
+		// $updatePassword = this.model.attributes.password;
+		//
+		// if(validateChangePassword){
+		// 	validateChangePassword['user_id'] = user_id;
+		// 	this.model.set(validateChangePassword);
+		//
+		// 	var url = this.model.url + "change_password";
+		// 	console.log("url", url);
+		// 	console.log("this.model.attributes", this.model.attributes);
+		//
+		// 	// $('#passwordModal').modal('hide');
+		//
+		// 	this.model.save(this.model.attributes, {
+		// 		"url": url,
+		// 		success: (model, response) => {
+		//
+		// 			console.log("success");
+		// 			console.log("model", model);
+		//
+		// 			userJson['password'] = $updatePassword;
+		// 			localStorage.setItem("user", JSON.stringify(userJson));
+		//
+		// 			new Noty({
+		// 				type: 'success',
+		// 				text: 'Password changed successfully',
+		// 				timeout: 2000
+		// 			}).show();
+		//
+		// 			$('#passwordModal').modal('hide');
+		// 		}
+		// 	});
+		// }else {
+		// 	new Noty({
+		// 		type: 'error',
+		// 		text: 'Please check if the requirements are satisfied or not',
+		// 		timeout: 2000
+		// 	}).show();
+		//
+		// }
+
+		$("input#oldPassword").val("");
+		$("input#newPassword").val(""),
+		$("input#confirmPassword").val("");
+	},
 
 	changePassword: function(){
 		console.log("changePassword");
+		$('#passwordModal').modal('show');
 	},
 
 	chooseProfilePic: function (){

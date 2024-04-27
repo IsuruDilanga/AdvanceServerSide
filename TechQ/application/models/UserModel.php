@@ -48,6 +48,53 @@ class UserModel extends CI_Model{
 		}
 	}
 
+	public function updatePassword($user_id,  $oldpassword, $newpassword) {
+
+		// Retrieve existing password from the database
+		$this->db->select('password');
+		$this->db->where('user_id', $user_id);
+		$existingPasswordQuery = $this->db->get('users');
+
+		// Check if user exists and retrieve the existing password
+		if ($existingPasswordQuery->num_rows() > 0) {
+			$existingPasswordRow = $existingPasswordQuery->row();
+			$existingPassword = $existingPasswordRow->password;
+
+			// Compare old password with the existing password
+			if ($oldpassword == $existingPassword) {
+				// Update password
+				$this->db->where('user_id', $user_id);
+				$this->db->update('users', array('password' => $newpassword));
+
+				// Check if the password was successfully updated
+				if ($this->db->affected_rows() > 0) {
+					return $newpassword; // Password updated successfully
+				} else {
+					return false; // Failed to update password
+				}
+			} else {
+				return false; // Old password doesn't match
+			}
+		} else {
+			return false; // User not found
+		}
+	}
+
+
+//	public function updatePassword($user_id, $userData){
+//		$oldpassword = $userData['oldpassword'];
+//		$newpassword = $userData['newpassword'];
+//
+//		$this->db->select('password');
+//		$this->db->where('user_id', $user_id);
+//		$existingPassword = $this->db->get('users');
+//
+//		if($oldpassword == $existingPassword){
+//
+//		}
+//
+//	}
+
 	public function updateUserImage($user_id, $userData){
 
 		$this->db->select('userimage');

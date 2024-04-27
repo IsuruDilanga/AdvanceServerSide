@@ -288,4 +288,39 @@ class User extends REST_Controller{
 			}
 		}
 	}
+
+	public function change_password_post(){
+		$_POST = json_decode(file_get_contents("php://input"), true);
+
+		$user_id = strip_tags($this->post('user_id'));
+		$oldpassword = strip_tags($this->post('oldpassword'));
+		$newpassword = strip_tags($this->post('newpassword'));
+
+		if(!empty($user_id) && !empty($oldpassword) && !empty($newpassword)){
+			$userData = array(
+				'user_id' => $user_id,
+				'password' => sha1($oldpassword),
+				'newpassword' => sha1($newpassword)
+			);
+
+			$oldpassword = sha1($oldpassword);
+			$newpassword = sha1($newpassword);
+
+			$updateUser = $this->UserModel->updatePassword($user_id, $oldpassword, $newpassword);
+			if($updateUser !== false) {
+				// User was updated successfully
+				$this->response(array(
+					'status' => TRUE,
+					'message' => 'User password has been updated successfully.') // Return updated user data
+					, REST_Controller::HTTP_OK);
+			} else {
+				// Update was not performed, possibly due to data being already up to date
+				$this->response(array(
+					'status' => FALSE,
+					'message' => 'Please check the credentials.',
+					'data' => null) // Return null data or an appropriate message
+					, REST_Controller::HTTP_OK);
+			}
+		}
+	}
 }

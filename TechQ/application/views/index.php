@@ -248,7 +248,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</tr>
 						<tr>
 							<td><span>Occupation </span></td>
-<!--							<td><p>: <%=occupation%></p></td>-->
 							<td>
 								<select class="user-occupation" disabled id="editOccupation">
 									<option value="<%=occupation%>"><%=occupation%></option>
@@ -278,11 +277,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<img src="../../assets/images/userimage/face-scan.png" alt="User Image" >
 					<% } %>
 				</div>
-
 			</div>
 		</div>
+
+		<!-- Add this HTML for the modal dialog -->
+		<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="passwordModalLabel">Change Password</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="changePasswordForm">
+							<div class="form-group">
+								<label for="oldPassword">Old Password</label>
+								<input type="password" class="form-control" id="oldPassword" placeholder="Enter old password" required>
+							</div>
+							<div class="form-group">
+								<label for="newPassword">New Password</label>
+								<input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+							</div>
+							<div class="form-group">
+								<label for="confirmPassword">Confirm Password</label>
+								<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="submitPasswordChange">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 
+</script>
+
+<script type="text/template" id="password_template">
+	<div>
+		<h1>Bookmark Page</h1>
+	</div>
 </script>
 
 <script type="text/template" id="question_template">

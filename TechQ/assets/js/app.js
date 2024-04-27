@@ -38,6 +38,25 @@ function validateUpdateUserProfileForm() {
 	return userImg;
 }
 
+function validateChangePasswordForm(){
+	var userPass = {
+		'oldpassword': $("input#oldPassword").val(),
+		'newpassword': $("input#newPassword").val(),
+		'confirmpassword': $("input#confirmPassword").val()
+	};
+
+	if(userPass.newpassword !== userPass.confirmpassword){
+		return false;
+	}
+
+	if (!userPass.oldpassword || !userPass.newpassword || !userPass.confirmpassword) {
+		return false;
+	}
+
+	return userPass;
+
+}
+
 function validateAnswerForm() {
 	var answer = {
 		'answer': $("textarea#inputQuestionDetails").val().replace(/\n/g, '<br>'),
