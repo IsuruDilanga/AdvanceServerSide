@@ -36,7 +36,9 @@ class User extends REST_Controller{
 						'occupation' => $result->occupation,
 						'userimage'=> $result->userimage,
 						'name' => $result->name,
-						'email' => $result->email
+						'email' => $result->email,
+						'answerquestioncnt' => $result->answerquestioncnt,
+						'askquestioncnt' => $result->askquestioncnt,
 					), REST_Controller::HTTP_OK);
 			}else{
 				$this->response("Enter valid username and password", REST_Controller::HTTP_BAD_REQUEST);
@@ -79,12 +81,12 @@ class User extends REST_Controller{
 
 	public function register_post(){
 		$_POST = json_decode(file_get_contents("php://input"), true);
-		$this->form_validation->set_rules('username', 'checkUsername', 'required');
-		$this->form_validation->set_rules('password', 'checkPassword', 'required');
-		$this->form_validation->set_rules('occupation', 'checkOccupation', 'required');
-		$this->form_validation->set_rules('premium', 'checkPremium', 'required');
-		$this->form_validation->set_rules('name', 'checkName', 'required');
-		$this->form_validation->set_rules('email', 'checkEmail', 'required');
+//		$this->form_validation->set_rules('username', 'checkUsername', 'required');
+//		$this->form_validation->set_rules('password', 'checkPassword', 'required');
+//		$this->form_validation->set_rules('occupation', 'checkOccupation', 'required');
+//		$this->form_validation->set_rules('premium', 'checkPremium', 'required');
+//		$this->form_validation->set_rules('name', 'checkName', 'required');
+//		$this->form_validation->set_rules('email', 'checkEmail', 'required');
 
 		$username = strip_tags($this->post('username'));
 		$password = strip_tags($this->post('password'));
@@ -297,16 +299,39 @@ class User extends REST_Controller{
 		$newpassword = strip_tags($this->post('newpassword'));
 
 		if(!empty($user_id) && !empty($oldpassword) && !empty($newpassword)){
-			$userData = array(
-				'user_id' => $user_id,
-				'password' => sha1($oldpassword),
-				'newpassword' => sha1($newpassword)
-			);
 
 			$oldpassword = sha1($oldpassword);
 			$newpassword = sha1($newpassword);
 
 			$updateUser = $this->UserModel->updatePassword($user_id, $oldpassword, $newpassword);
+			if($updateUser !== false) {
+				// User was updated successfully
+				$this->response(array(
+					'status' => TRUE,
+					'message' => 'User password has been updated successfully.') // Return updated user data
+					, REST_Controller::HTTP_OK);
+			} else {
+				// Update was not performed, possibly due to data being already up to date
+				$this->response(array(
+					'status' => FALSE,
+					'message' => 'Please check the credentials.',
+					'data' => null) // Return null data or an appropriate message
+					, REST_Controller::HTTP_OK);
+			}
+		}
+	}
+
+	public function forget_password_post(){
+		$_POST = json_decode(file_get_contents("php://input"), true);
+
+		$username = strip_tags($this->post('username'));
+		$newpassword = strip_tags($this->post('newpassword'));
+
+		if(!empty($username) && !empty($newpassword)){
+
+			$newpassword = sha1($newpassword);
+
+			$updateUser = $this->UserModel->forgetPassword($username, $newpassword);
 			if($updateUser !== false) {
 				// User was updated successfully
 				$this->response(array(

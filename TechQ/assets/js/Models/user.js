@@ -10,6 +10,8 @@ app.models.User = Backbone.Model.extend({
 		occupation: "",
 		premium: false,
 		userimage: "",
+		answerquestioncnt: null,
+		askquestioncnt: null,
 	},
 	url: '/TechQ/index.php/api/User/',
 	urlAskQuestion: '/TechQ/index.php/api/Question/',

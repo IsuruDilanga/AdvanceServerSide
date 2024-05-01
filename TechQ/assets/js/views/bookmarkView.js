@@ -9,6 +9,9 @@ app.views.bookmarkView = Backbone.View.extend({
 		console.log("app.user.attributes", app.user.attributes);
 		this.$el.html(template(app.user.attributes));
 
+		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView.render();
+
 		this.collection.each(function(question){
 			var questionView = new app.views.QuestionView({model: question});
 			questionView.render();

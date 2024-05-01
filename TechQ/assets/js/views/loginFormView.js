@@ -12,8 +12,82 @@ app.views.LoginFormView = Backbone.View.extend({
     },
     events: {
         "click #login_button": "do_login",
-        "click #signup_button": "do_register"
+        "click #signup_button": "do_register",
+		"click #forget-password": "forget_password",
+		'click #forgetPasswordChange': 'forgetPasswordChange',
     },
+
+	forget_password: function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		console.log("Forget Password");
+		$('#forgetPasswordModel').modal('show');
+	},
+
+	forgetPasswordChange: function (){
+		console.log("forgetPasswordChange");
+		// userJson = JSON.parse(localStorage.getItem("user"));
+		// var user_id = userJson['user_id'];
+
+		$username = $("input#username").val();
+		$newPassword = $("input#newPassword").val();
+		$confirmPassword = $("input#confirmPassword").val();
+
+		if($newPassword != $confirmPassword){
+			new Noty({
+				type: 'error',
+				text: 'New password and confirm password do not match',
+				timeout: 2000
+			}).show();
+		}else{
+			var userPass = {
+				'username': $username,
+				'newpassword': $newPassword,
+				'confirmpassword': $confirmPassword
+			};
+
+			var url = this.model.url + "forget_password";
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: userPass,
+				success: (response) =>{
+					console.log("response", response);
+					if(response.status === true){
+						new Noty({
+							type: 'success',
+							text: 'Password changed successfully',
+							timeout: 2000
+						}).show();
+						$('#forgetPasswordModel').modal('hide');
+					}else if(response.status === false){
+						new Noty({
+							type: 'error',
+							text: 'Username or email incorrect',
+							timeout: 2000
+						}).show();
+					}
+				},
+				error: function(response){
+					console.error("Error:", response);
+					new Noty({
+						type: 'error',
+						text: 'Failed to update password. Please try again.',
+						timeout: 2000
+					}).show();
+				}
+
+			})
+
+		}
+
+		$("input#username").val("");
+		$("input#newPassword").val(""),
+		$("input#confirmPassword").val("");
+	},
+
     do_login: function (e) {
 		e.preventDefault();
 		e.stopPropagation();
@@ -85,10 +159,10 @@ app.views.LoginFormView = Backbone.View.extend({
 
 				error:function (model,xhr) {
 					if(xhr.status === 409){
-						$("#errSign").html(xhr.responseJSON.status);
+						$("#errSign").html(xhr.responseJSON.data);
 						new Noty({
 							type: 'error',
-							text: xhr.responseJSON.status,
+							text: 'Username or Email already exists',
 							timeout: 2000
 						}).show();
 					} else {

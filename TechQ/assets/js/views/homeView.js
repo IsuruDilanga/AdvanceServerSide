@@ -3,11 +3,14 @@ var app = app || {};
 app.views.homeView = Backbone.View.extend({
 	el: ".container",
 
-
 	render: function() {
 		console.log('rendering home view');
 		template = _.template($('#home_template').html());
 		this.$el.html(template(app.user.attributes));
+
+		// Render the navbar
+		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView.render();
 
 		this.collection.each(function(question){
 			var questionView = new app.views.QuestionView({model: question});

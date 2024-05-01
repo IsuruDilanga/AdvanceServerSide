@@ -58,6 +58,19 @@ class AnswerModel extends CI_Model{
 		);
 
 		$insertAns = $this->db->insert('Answers', $answerData);
+
+		if($insertAns){
+			$pastanswerquestioncnt = $this->db->select('answerquestioncnt')
+				->from('Users')
+				->where('user_id', $userid)
+				->get()
+				->row(); // Fetch the result as a single row
+
+			$answerquestioncnt = $pastanswerquestioncnt->answerquestioncnt + 1;
+
+			$this->db->where('user_id', $userid)
+				->update('Users', array('answerquestioncnt' => $answerquestioncnt));
+		}
 		return $insertAns;
 	}
 

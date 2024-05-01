@@ -106,7 +106,8 @@ app.routers.AppRouter = Backbone.Router.extend({
 		if (userJson != null){
 			app.user = new app.models.User(userJson);
 			console.log("user: "+ app.user);
-			// app.homeView = new app.views.homeView();
+
+			// Render the home view and fetch questions
 			app.homeView = new app.views.homeView({collection: new app.collections.QuestionCollection()});
 
 			var url = app.homeView.collection.url + "displayAllQuestions";
@@ -127,13 +128,52 @@ app.routers.AppRouter = Backbone.Router.extend({
 					// console.log("error");
 				}
 			});
-			// app.homeView.render();
-		}else {
+		} else {
 			app.appRouter.navigate("", {trigger: true});
 			console.log("else")
 		}
-
 	},
+
+
+	// home: function(){
+	// 	console.log("home route");
+	// 	userJson = JSON.parse(localStorage.getItem("user"));
+	// 	console.log(userJson);
+	//
+	// 	if (userJson != null){
+	// 		app.user = new app.models.User(userJson);
+	// 		console.log("user: "+ app.user);
+	// 		// app.homeView = new app.views.homeView();
+	// 		app.navView = new app.views.NavBarView({model: app.user});
+	// 		app.homeView = new app.views.homeView({collection: new app.collections.QuestionCollection()});
+	//
+	// 		var url = app.homeView.collection.url + "displayAllQuestions";
+	// 		// console.log("url: "+ url);
+	// 		app.homeView.collection.fetch({
+	// 			reset: true,
+	// 			"url": url,
+	// 			success: function(collection, response){
+	// 				console.log("response: "+ response);
+	//
+	// 				app.navView.render();
+	// 				app.homeView.render();
+	// 			},
+	// 			error: function(model, xhr, options){
+	// 				if(xhr.status == 404){
+	// 					// console.log("error 404");
+	// 					app.navView.render();
+	// 					app.homeView.render();
+	// 				}
+	// 				// console.log("error");
+	// 			}
+	// 		});
+	// 		// app.homeView.render();
+	// 	}else {
+	// 		app.appRouter.navigate("", {trigger: true});
+	// 		console.log("else")
+	// 	}
+	//
+	// },
 
 	askquestion: function (){
 		console.log("askQuestion route");

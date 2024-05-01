@@ -80,6 +80,23 @@ class UserModel extends CI_Model{
 		}
 	}
 
+	public function forgetPassword($username, $newpassword){
+		$this->db->select('password');
+		$this->db->where("(username = '$username' OR email = '$username')");
+		$existingPasswordQuery = $this->db->get('users');
+
+		if($existingPasswordQuery->num_rows() > 0) {
+			$this->db->where("(username = '$username' OR email = '$username')");
+			$updatepassword = $this->db->update('users', array('password' => $newpassword));
+			return $updatepassword;
+//			if ($this->db->affected_rows() > 0) {
+//				return $newpassword;
+//			} else {
+//				return false;
+//			}
+		}
+	}
+
 
 //	public function updatePassword($user_id, $userData){
 //		$oldpassword = $userData['oldpassword'];
@@ -132,8 +149,8 @@ class UserModel extends CI_Model{
 
 
 	public function checkUser($username){
-		$this->db->select('username');
-		$this->db->where('username', $username);
+		$this->db->select('username, email');
+		$this->db->where("(username = '$username' OR email = '$username')");
 		$respond = $this->db->get('users');
 		if($respond->num_rows() == 1){
 			return true;

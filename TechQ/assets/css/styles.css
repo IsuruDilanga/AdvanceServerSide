@@ -4,7 +4,7 @@
 }
 
 body {
-	background: #e0dcdc8c;
+	background: rgba(255, 255, 255);
 	font-family: "Poppins", sans-serif;
 	letter-spacing: 1px;
 	font-size: 16px;
@@ -49,6 +49,17 @@ body {
 	border-radius: 10px;
 	padding: 10px;
 	letter-spacing: 1px;
+}
+
+.forget-password{
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+.forget-password a{
+	font-size: 16px;
+	font-family: "Poppins", sans-serif;
+	color: white;
 }
 
 /*.form-label-group > input,*/
@@ -647,7 +658,7 @@ table.table td .add {
 .navbar .form-inline .form-control {
 	margin-left: 20px;
 	border-radius: 10px;
-	width: 700px; /* Increase the width as needed */
+	width: 400px; /* Increase the width as needed */
 }
 
 .navbar .form-inline .btn{

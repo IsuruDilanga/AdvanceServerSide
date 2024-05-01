@@ -9,6 +9,9 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		template = _.template($('#answer-question-template').html());
 		this.$el.html(template(this.model.attributes));
 
+		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView.render();
+
 		this.collection.each(function(answer){
 			var answerView = new app.views.AnswerView({model: answer});
 			answerView.render();
@@ -243,6 +246,12 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 								text: 'Answer submitted successfully',
 								timeout: 2000
 							}).show();
+
+							$userJson = JSON.parse(localStorage.getItem("user"));
+							console.log('userJson: ', $userJson);
+							$userJson['answerquestioncnt'] = parseInt($userJson['answerquestioncnt']) + 1;
+
+							localStorage.setItem("user", JSON.stringify($userJson));
 
 							this.collection.add(model);
 							console.log('model: ', model);

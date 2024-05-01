@@ -120,6 +120,19 @@ class QuestionModel extends CI_Model{
 			}
 		}
 
+		if ($insertDetails){
+			$pastaskquestioncnt = $this->db->select('askquestioncnt')
+				->from('Users')
+				->where('user_id', $userid)
+				->get()
+				->row(); // Fetch the result as a single row
+
+			$askquestioncnt = $pastaskquestioncnt->askquestioncnt + 1;
+
+			$this->db->where('user_id', $userid)
+				->update('Users', array('askquestioncnt' => $askquestioncnt));
+		}
+
 		$this->db->trans_complete(); // Complete transaction
 
 		return $insertDetails && $this->db->trans_status(); // Return transaction status

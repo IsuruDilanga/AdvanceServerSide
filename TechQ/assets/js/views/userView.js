@@ -8,6 +8,9 @@ app.views.UserView = Backbone.View.extend({
 		template = _.template($('#user_template').html());
 		console.log("render view: " + app.user.attributes.username);
 		this.$el.html(template(app.user.attributes));
+
+		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView.render();
 	},
 
 	events:{

@@ -27,6 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="../../assets/js/views/answerView.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/bookmarkView.js" type="text/javascript"></script>
 	<script src="../../assets/js/views/userView.js" type="text/javascript"></script>
+	<script src="../../assets/js/views/navBarView.js" type="text/javascript"></script>
 
 	<!-- Adding CDN -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -97,6 +98,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                placeholder="Password"
                                                required name="password">
                                     </div>
+									<div class="forget-password">
+										<a href="#" id="forget-password">Forget Password</a>
+									</div>
 
                                     <button id="login_button" class="btn btn-lg btn-outline-primary btn-block "
                                             type="submit">Log in
@@ -104,6 +108,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </form>
                             </div>
                         </div>
+
+						<!-- Add this HTML for the modal dialog -->
+						<div class="modal fade" id="forgetPasswordModel" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="passwordModalLabel">Forget Password</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form id="changePasswordForm">
+											<div class="form-group">
+												<label for="username">Username or Email</label>
+												<input type="text" class="form-control" id="username" placeholder="Enter Username or Email" required>
+											</div>
+											<div class="form-group">
+												<label for="newPassword">New Password</label>
+												<input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+											</div>
+											<div class="form-group">
+												<label for="confirmPassword">Confirm Password</label>
+												<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+											</div>
+										</form>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary" id="forgetPasswordChange">Save changes</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                              aria-labelledby="pills-profile-tab">
                             <div class="card-body">
@@ -150,39 +189,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/template" id="home_template">
 
-	<div class="header" style="position:absolute;top:0;left:0;width:100%">
-		<nav class="navbar navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="#">Tech'Q</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
-			</form>
-
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=name%>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li style="font-size: 30px">
-<!--						#home/bookmark/<%=user_id%>-->
-						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
-							<i class="fa-regular fa-bookmark"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
-						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
-				</ul>
-
-			</div>
-		</nav>
+	<div id="nav-bar-container">
 
 	</div>
+
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!--			<form class="form-inline my-2 my-lg-0">-->
+<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--			</form>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 30px">-->
+<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
+<!---->
+<!--	</div>-->
 
 	<div class="question-area" id="question">
 		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
@@ -194,40 +236,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </script>
 
+
+
+
 <script type="text/template" id="user_template">
 
-	<div class="header" style="position:absolute;top:0;left:0;width:100%">
-		<nav class="navbar navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="#">Tech'Q</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
-			</form>
+	<div id="nav-bar-container">
 
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=username%>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li style="font-size: 30px">
-						<!--						#home/bookmark/<%=user_id%>-->
-						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
-							<i class="fa-regular fa-bookmark"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
-						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
-				</ul>
-
-			</div>
-		</nav>
 	</div>
+
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!--			<form class="form-inline my-2 my-lg-0">-->
+<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--			</form>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 30px">-->
+<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
+<!--	</div>-->
 
 	<div class="container">
 		<div class="row user-row">
@@ -255,6 +303,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<option value="employee">Employee</option>
 								</select>
 							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Answered Questions: <%= answerquestioncnt %></p>
+								<% let anscntstar = Math.floor(answerquestioncnt / 10); %>
+								<% if(anscntstar >= 1) { %>
+									<% for (let i = 0; i < anscntstar; i++) { %>
+										<i class="fa-solid fa-star" style="color: gold"></i>
+									<% } %>
+								<% } %>
+							</td>
+							<td>
+								<div class="progress">
+									<% const answerCnt = answerquestioncnt % 10; %>
+									<% for (let i = 0; i < answerCnt; i++) { %>
+									<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+									<% } %>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p>Asked Questions: <%= askquestioncnt %></p>
+								<% let askcntstar = Math.floor(askquestioncnt / 10); %>
+								<% if(askcntstar >= 1) { %>
+
+									<% for (let i = 0; i < askcntstar; i++) { %>
+										<i class="fa-solid fa-star" style="color: gold"></i>
+									<% } %>
+								<% } %>
+							</td>
+							<td>
+								<div class="progress">
+									<% const askCnt = askquestioncnt % 10; %>
+									<% for (let i = 0; i < askCnt; i++) { %>
+									<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+									<% } %>
+								</div>
+							</td>
+
+<!--							<td>-->
+<!--								<span>answerQ: <%=answerquestioncnt%> </span>-->
+<!--								<span>askQ: <%=askquestioncnt%></span>-->
+<!---->
+<!--							</td>-->
 						</tr>
 
 					</table>
@@ -340,38 +433,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 <script type="text/template" id="add_question_template">
-	<div class="header" style="position:absolute;top:0;left:0;width:100%">
-		<nav class="navbar navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="#">Tech'Q</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
-			</form>
 
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=username%>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li style="font-size: 20px">
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-regular fa-bookmark"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
-						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
-				</ul>
-
-			</div>
-		</nav>
+	<div id="nav-bar-container">
 
 	</div>
+
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!--			<form class="form-inline my-2 my-lg-0">-->
+<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--			</form>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 30px">-->
+<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
+<!---->
+<!--	</div>-->
 
 	<h3 class="question-page-title" >Ask a Technical Questions</h3>
 
@@ -434,39 +532,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/template" id="answer-question-template">
 
-	<div class="header" style="position:absolute;top:0;left:0;width:100%">
-		<nav class="navbar navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="#">Tech'Q</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> search</button>
-			</form>
-
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=username%>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li style="font-size: 20px">
-
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-regular fa-bookmark"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
-						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
-				</ul>
-
-			</div>
-		</nav>
+	<div id="nav-bar-container">
 
 	</div>
+
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!--			<form class="form-inline my-2 my-lg-0">-->
+<!--				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--			</form>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 20px">-->
+<!---->
+<!--						<a href="#" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
+<!---->
+<!--	</div>-->
 
 	<div class="container-fluid answer-contain" style="marg">
 		<div class="row">
@@ -572,6 +674,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script type="text/template" id="bookmark_View">
 
+	<div id="nav-bar-container">
+
+	</div>
+
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!--			<form class="form-inline my-2 my-lg-0">-->
+<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--			</form>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 30px">-->
+<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
+<!---->
+<!--	</div>-->
+
+	<div class="question-area" id="question">
+		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
+			<h1>Bookmark Questions</h1>
+			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
+		</div>
+		<hr>
+	</div>
+
+</script>
+
+<script type="text/template" id="nav-bar-template">
 	<div class="header" style="position:absolute;top:0;left:0;width:100%">
 		<nav class="navbar navbar-expand-lg navbar-light nav-color">
 			<a class="navbar-brand" href="#">Tech'Q</a>
@@ -583,13 +733,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="collapse navbar-collapse" id="navbarToggler">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=username%>
+						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
+							<i class="fa-solid fa-user"></i> <%=name%>
 						</a>
 					</li>
 				</ul>
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="font-size: 30px">
+						<!--						#home/bookmark/<%=user_id%>-->
 						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
 							<i class="fa-regular fa-bookmark"></i>
 						</a>
@@ -604,15 +755,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</nav>
 
 	</div>
-
-	<div class="question-area" id="question">
-		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
-			<h1>Bookmark Questions</h1>
-			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
-		</div>
-		<hr>
-	</div>
-
 </script>
 
 

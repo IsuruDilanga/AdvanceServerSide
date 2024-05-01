@@ -6,7 +6,12 @@ app.views.AddQuestionView = Backbone.View.extend({
 	render:function () {
 		console.log('rendering add question view');
 		template = _.template($('#add_question_template').html());
+		console.log('model attributes:', this.model.attributes);
 		this.$el.html(template(this.model.attributes));
+
+		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView.render();
+
 	},
 
 	events: {
@@ -54,6 +59,19 @@ app.views.AddQuestionView = Backbone.View.extend({
 								text: 'Question added successfully',
 								timeout: 2000
 							}).show();
+
+							$userJson = JSON.parse(localStorage.getItem("user"));
+							console.log('userJson: ', $userJson);
+							$userJson['askquestioncnt'] = parseInt($userJson['askquestioncnt']) + 1;
+
+							localStorage.setItem("user", JSON.stringify($userJson));
+
+							$('#inputQuestionTitle').val('');
+							$('#inputQuestionDetails').val('');
+							$('#inputQuestionExpectation').val('');
+							$('#inputQuestionTags').val('');
+							$('#questionCategory').val('');
+							$('#imageUpload').val('');
 						},
 						error: (model, response) => {
 							console.log('error', model, response);
@@ -76,12 +94,12 @@ app.views.AddQuestionView = Backbone.View.extend({
 			});
 		}
 
-		$('#inputQuestionTitle').val('');
-		$('#inputQuestionDetails').val('');
-		$('#inputQuestionExpectation').val('');
-		$('#inputQuestionTags').val('');
-		$('#questionCategory').val('');
-		$('#imageUpload').val('');
+		// $('#inputQuestionTitle').val('');
+		// $('#inputQuestionDetails').val('');
+		// $('#inputQuestionExpectation').val('');
+		// $('#inputQuestionTags').val('');
+		// $('#questionCategory').val('');
+		// $('#imageUpload').val('');
 	},
 
 	home_search: function(e){
