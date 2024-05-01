@@ -59,14 +59,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<div class="nav_container"></div>
+<!--<div class="nav_container"></div>-->
 
 <div class="container" style="margin-top: 70px;"></div>
 
 <script type="text/template" id="login_template">
     <div class="login-div">
         <div class="row no-gutters">
-            <div class="col-md-5 mx-auto">
+            <div class="col-sm-8 mx-auto">
                 <div class="card card-signin my-5">
                     <ul class="nav nav-pills " id="pills-tab" role="tablist">
                         <li class="nav-item">
@@ -121,6 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 									<div class="modal-body">
 										<form id="changePasswordForm">
+
 											<div class="form-group">
 												<label for="username">Username or Email</label>
 												<input type="text" class="form-control" id="username" placeholder="Enter Username or Email" required>
@@ -149,32 +150,61 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <h5 class="card-title text-center">Tech'Q</h5>
                                 <form class="form-signin">
                                     <p id="errSign"></p>
-                                    <div class="form-label-group">
-                                        <input type="text" class="form-control" placeholder="Enter username"
-                                               required autofocus id="regUsername">
-                                    </div>
-									<div class="form-label-group">
-										<input type="text" class="form-control" placeholder="Enter your name"
-											   required autofocus id="regName">
+
+									<div class="container">
+										<div class="row form-label-group-sign">
+											<div class="col-sm-6">
+												<input type="text" class="form-control" placeholder="Enter username"
+													   required autofocus id="regUsername">
+											</div>
+											<div class="col-sm-6">
+												<input type="text" class="form-control" placeholder="Enter your name"
+													   required autofocus id="regName">
+											</div>
+										</div>
 									</div>
-									<div class="form-label-group">
-										<input type="email" class="form-control" placeholder="Enter your email"
-											   required autofocus id="regEmail">
+									<div class="container">
+										<div class="row form-label-group-sign">
+											<div class="col-md-8">
+												<input type="email" class="form-control" placeholder="Enter your email"
+													   required autofocus id="regEmail">
+											</div>
+											<div class="col-md-4">
+												<select class="form-control" required autofocus id="regOccupation">
+													<option value="" selected disabled>Please select</option>
+													<option value="student">Student</option>
+													<option value="employee">Employee</option>
+												</select>
+											</div>
+										</div>
 									</div>
-                                    <div class="form-label-group">
+
+<!--                                    <div class="form-label-group">-->
+<!--                                        <input type="text" class="form-control" placeholder="Enter username"-->
+<!--                                               required autofocus id="regUsername">-->
+<!--                                    </div>-->
+<!--									<div class="form-label-group">-->
+<!--										<input type="text" class="form-control" placeholder="Enter your name"-->
+<!--											   required autofocus id="regName">-->
+<!--									</div>-->
+<!--									<div class="form-label-group-sign">-->
+<!--										<input type="email" class="form-control" placeholder="Enter your email"-->
+<!--											   required autofocus id="regEmail">-->
+<!--									</div>-->
+                                    <div class="form-label-group-sign">
                                         <input type="password" id="regPassword" class="form-control"
                                                placeholder="Password"
                                                required name="password">
                                     </div>
 
-									<div class="form-label-group">
-										<select class="form-control" required autofocus id="regOccupation">
-											<option value="" selected disabled>Please select</option>
-											<option value="student">Student</option>
-											<option value="employee">Employee</option>
-										</select>
-									</div>
-                                    <button class="btn btn-outline-primary btn-block " id="signup_button"
+<!--									<div class="form-label-group-sign">-->
+<!--										<select class="form-control" required autofocus id="regOccupation">-->
+<!--											<option value="" selected disabled>Please select</option>-->
+<!--											<option value="student">Student</option>-->
+<!--											<option value="employee">Employee</option>-->
+<!--										</select>-->
+<!--									</div>-->
+                                    <button class="btn btn-outline-primary btn-block " id="signup_button" style="margin-top: 50px"
                                             type="submit">Sign up
                                     </button>
                                 </form>
@@ -725,34 +755,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="header" style="position:absolute;top:0;left:0;width:100%">
 		<nav class="navbar navbar-expand-lg navbar-light nav-color">
 			<a class="navbar-brand" href="#">Tech'Q</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
-			</form>
 
-			<div class="collapse navbar-collapse" id="navbarToggler">
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-username" style="font-size: 20px; cursor: pointer">
-						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">
-							<i class="fa-solid fa-user"></i> <%=name%>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li style="font-size: 30px">
-						<!--						#home/bookmark/<%=user_id%>-->
-						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">
-							<i class="fa-regular fa-bookmark"></i>
-						</a>
-					</li>
-				</ul>
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon" style="color: #2ea53a"></span>
+			</button>
+
+			<div class="collapse navbar-collapse justify-content-center" id="navbarToggler">
+				<div class="d-flex justify-content-center align-items-center flex-grow-1"> <!-- Added a container div for center alignment -->
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
+					</form>
+				</div>
+<!--				<ul class="navbar-nav">-->
+<!--					<li class="nav-item" style="font-size: 20px;">-->
+<!--						<a class="nav-link" href="#home/user/<%=user_id%>" style="text-decoration: none; color: white;">-->
+<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--					<li class="nav-item ml-3" style="font-size: 30px;">-->
+<!--						<a class="nav-link" href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white;">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
 					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
 						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
 				</ul>
-
 			</div>
 		</nav>
+
+
+		<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!---->
+<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
+<!--				<form class="form-inline my-2 my-lg-0">-->
+<!--					<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--					<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--				</form>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
+<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
+<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
+<!--					<li style="font-size: 30px">-->
+<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
+<!--							<i class="fa-regular fa-bookmark"></i>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
+<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
+<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
+<!--				</ul>-->
+<!---->
+<!--			</div>-->
+<!--		</nav>-->
 
 	</div>
 </script>
