@@ -16,6 +16,8 @@ class User extends REST_Controller{
 		$this->form_validation->set_rules('username', 'checkUsername', 'required');
 		$this->form_validation->set_rules('password', 'checkPassword', 'required');
 
+		$this->user_id = $this->session->userdata('user_id');
+
 		if($this->form_validation->run() == FALSE){
 			$this->response("Something went wrong!.", REST_Controller::HTTP_BAD_REQUEST);
 		}else{
@@ -23,28 +25,78 @@ class User extends REST_Controller{
 			$password = strip_tags($this->post('password'));
 
 			$result = $this->UserModel->loginUser($username, sha1($password));
-//			$result = $this->UserModel->loginUser($username, $password);
-//			print_r($result);
+//      $result = $this->UserModel->loginUser($username, $password);
+//      print_r($result);
 			if($result != false){
+				// Set session here
+				$session_data = array(
+					'user_id' => $result->user_id,
+					'ip_address' => $_SERVER['REMOTE_ADDR'],
+					'login_timestamp' => time(),
+					'login_date' => date('Y-m-d H:i:s')
+				);
+
+				$this->session->set_userdata($session_data);
+
 				$this->response(array(
-						'status' => TRUE,
-						'message' => 'User has logged in successfully.',
-						'data' => true,
-						'username' => $result->username,
-						'user_id' => $result->user_id,
-						'premium' => $result->premium,
-						'occupation' => $result->occupation,
-						'userimage'=> $result->userimage,
-						'name' => $result->name,
-						'email' => $result->email,
-						'answerquestioncnt' => $result->answerquestioncnt,
-						'askquestioncnt' => $result->askquestioncnt,
-					), REST_Controller::HTTP_OK);
+					'status' => TRUE,
+					'message' => 'User has logged in successfully.',
+					'data' => true,
+					'username' => $result->username,
+					'user_id' => $result->user_id,
+					'premium' => $result->premium,
+					'occupation' => $result->occupation,
+					'userimage'=> $result->userimage,
+					'name' => $result->name,
+					'email' => $result->email,
+					'answerquestioncnt' => $result->answerquestioncnt,
+					'askquestioncnt' => $result->askquestioncnt,
+				), REST_Controller::HTTP_OK);
 			}else{
 				$this->response("Enter valid username and password", REST_Controller::HTTP_BAD_REQUEST);
 			}
 		}
 	}
+
+
+//	public function login_post(){
+//		$_POST = json_decode(file_get_contents("php://input"), true);
+//		$this->form_validation->set_rules('username', 'checkUsername', 'required');
+//		$this->form_validation->set_rules('password', 'checkPassword', 'required');
+//
+//		$this->user_id = $this->session->userdata('user_id');
+//
+//		if($this->form_validation->run() == FALSE){
+//			$this->response("Something went wrong!.", REST_Controller::HTTP_BAD_REQUEST);
+//		}else{
+//			$username = strip_tags($this->post('username'));
+//			$password = strip_tags($this->post('password'));
+//
+//			$result = $this->UserModel->loginUser($username, sha1($password));
+////			$result = $this->UserModel->loginUser($username, $password);
+////			print_r($result);
+//			if($result != false){
+//				$this->response(array(
+//						'status' => TRUE,
+//						'message' => 'User has logged in successfully.',
+//						'data' => true,
+//						'username' => $result->username,
+//						'user_id' => $result->user_id,
+//						'premium' => $result->premium,
+//						'occupation' => $result->occupation,
+//						'userimage'=> $result->userimage,
+//						'name' => $result->name,
+//						'email' => $result->email,
+//						'answerquestioncnt' => $result->answerquestioncnt,
+//						'askquestioncnt' => $result->askquestioncnt,
+//					), REST_Controller::HTTP_OK);
+//
+//				$this->session->set_userdata('user_id', $this->user_id);
+//			}else{
+//				$this->response("Enter valid username and password", REST_Controller::HTTP_BAD_REQUEST);
+//			}
+//		}
+//	}
 
 	public function ask_question_image_post() {
 		// Check if file is uploaded
@@ -244,6 +296,18 @@ class User extends REST_Controller{
 //		}
 
 	}
+
+	public function logout_post() {
+		// Destroy session
+		$this->session->sess_destroy();
+
+		// Send response
+		$this->response(array(
+			'success' => true,
+			'message' => 'Logout successful'
+		), REST_Controller::HTTP_OK);
+	}
+
 
 	public function upload_image_post()
 	{

@@ -60,8 +60,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <!--<div class="nav_container"></div>-->
-
-<div class="container" style="margin-top: 70px;"></div>
+<!--<div class="container" style="margin-top: 50px; " ></div>-->
+<div class="container" style="margin-top: 70px; width: 93%;" ></div>
 
 <script type="text/template" id="login_template">
     <div class="login-div">
@@ -217,52 +217,81 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </script>
 
+
+
+
 <script type="text/template" id="home_template">
 
 	<div id="nav-bar-container">
 
 	</div>
 
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!--			<form class="form-inline my-2 my-lg-0">-->
-<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--			</form>-->
-<!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
+	<div class="container" >
+		<div class="row" style="margin-top: 100px">
+			<div class="col-sm-2">
+				<div class="slide_navbar">
+					<div class="d-flex flex-column slide_navbar-div " style=" ">
+<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+<!--							<span class="fs-4">Sidebar</span>-->
 <!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 30px">-->
-<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
-<!---->
-<!--			</div>-->
-<!--		</nav>-->
-<!---->
-<!--	</div>-->
+						<div class="slid-nav-li">
+							<ul class="nav nav-pills flex-column mb-auto" >
+								<li class="nav-item">
+									<a href="#" class="nav-link" aria-current="page" style="background-color: #eaeaea;">
+										<i class="fa-solid fa-house"></i><span class="side-title">Home</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/bookmark/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-bookmark"></i><span class="side-title">Saves</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/user/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
+									</a>
+								</li>
+							</ul>
+						</div>
 
-	<div class="question-area" id="question">
-		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
-			<h1><strong>Top Questions</strong></h1>
-			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
+<!--						<hr>-->
+<!--						<div class="dropdown">-->
+<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+<!--								<strong>mdo</strong>-->
+<!--							</a>-->
+<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
+<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
+<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
+<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
+<!--								<li><hr class="dropdown-divider"></li>-->
+<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
+<!--							</ul>-->
+<!--						</div>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-10" style="margin-left: auto;">
+				<div class="question-area" id="question">
+					<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
+						<h1>Questions You Can Answer</h1>
+						<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
+					</div>
+					<hr>
+				</div>
+			</div>
 		</div>
-		<hr>
 	</div>
+
+<!--	<div class="question-area" id="question">-->
+<!--		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--			<h1><strong>Top Questions</strong></h1>-->
+<!--			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>-->
+<!--		</div>-->
+<!--		<hr>-->
+<!--	</div>-->
 
 </script>
 
@@ -708,6 +737,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</div>
 
+	<div class="container" >
+		<div class="row" style="margin-top: 100px">
+			<div class="col-sm-2">
+				<div class="slide_navbar">
+					<div class="d-flex flex-column slide_navbar-div " style=" ">
+						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+						<!--							<span class="fs-4">Sidebar</span>-->
+						<!--						</a>-->
+						<div class="slid-nav-li">
+							<ul class="nav nav-pills flex-column mb-auto" >
+								<li class="nav-item">
+									<a href="#" class="nav-link" aria-current="page" >
+										<i class="fa-solid fa-house"></i><span class="side-title">Home</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/bookmark/<%=user_id%>" class="nav-link link-dark" style="background-color: #eaeaea;">
+										<i class="fa-solid fa-bookmark"></i><span class="side-title">Saves</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/user/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!--						<hr>-->
+						<!--						<div class="dropdown">-->
+						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
+						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+						<!--								<strong>mdo</strong>-->
+						<!--							</a>-->
+						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
+						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
+						<!--								<li><hr class="dropdown-divider"></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
+						<!--							</ul>-->
+						<!--						</div>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-10" style="margin-left: auto;">
+				<div class="question-area" id="question">
+					<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
+						<h1>Bookmark Questions</h1>
+						<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
+					</div>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+
 <!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
 <!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
 <!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
@@ -741,19 +829,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!---->
 <!--	</div>-->
 
-	<div class="question-area" id="question">
-		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">
-			<h1>Bookmark Questions</h1>
-			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>
-		</div>
-		<hr>
-	</div>
+<!--	<div class="question-area" id="question">-->
+<!--		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--			<h1>Bookmark Questions</h1>-->
+<!--			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>-->
+<!--		</div>-->
+<!--		<hr>-->
+<!--	</div>-->
 
 </script>
 
 <script type="text/template" id="nav-bar-template">
-	<div class="header" style="position:absolute;top:0;left:0;width:100%">
-		<nav class="navbar navbar-expand-lg navbar-light nav-color">
+	<div class="header" style="position:fixed;top:0;left:0;width:100%; z-index: 1">
+		<nav class="navbar navbar-expand-lg navbar-light nav-color fixed-top">
 			<a class="navbar-brand" href="#">Tech'Q</a>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -767,6 +855,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>
 					</form>
 				</div>
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
+						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</script>
+
+<!--<script type="text/template" id="nav-bar-template">-->
+<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
+<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
+<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
+<!---->
+<!--			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--				<span class="navbar-toggler-icon" style="color: #2ea53a"></span>-->
+<!--			</button>-->
+<!---->
+<!--			<div class="collapse navbar-collapse justify-content-center" id="navbarToggler">-->
+<!--				<div class="d-flex justify-content-center align-items-center flex-grow-1">-->
+<!--					<form class="form-inline my-2 my-lg-0">-->
+<!--						<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
+<!--						<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
+<!--					</form>-->
+<!--				</div>-->
 <!--				<ul class="navbar-nav">-->
 <!--					<li class="nav-item" style="font-size: 20px;">-->
 <!--						<a class="nav-link" href="#home/user/<%=user_id%>" style="text-decoration: none; color: white;">-->
@@ -779,46 +892,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--						</a>-->
 <!--					</li>-->
 <!--				</ul>-->
-				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">
-						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
-				</ul>
-			</div>
-		</nav>
-
-
-		<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<form class="form-inline my-2 my-lg-0">-->
-<!--					<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--					<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--				</form>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 30px">-->
-<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
 <!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
 <!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
 <!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
 <!--				</ul>-->
-<!---->
 <!--			</div>-->
 <!--		</nav>-->
-
-	</div>
-</script>
+<!---->
+<!---->
+<!--	</div>-->
+<!--</script>-->
 
 
 </body>

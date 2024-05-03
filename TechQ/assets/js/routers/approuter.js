@@ -334,6 +334,34 @@ app.routers.AppRouter = Backbone.Router.extend({
 	logout: function(){
 		console.log("logout route");
 		localStorage.clear();
-		window.location.href = "";
+
+
+		var url = app.user.url + "logout";
+
+		$.ajax({
+			url: url,
+			type: "POST",
+			success: function (response) {
+				window.location.href = "";
+
+			},
+
+			error: function(model, xhr, options){
+				if(xhr.status == 404){
+					console.log("error 404");
+					// app.ansQuestionView = new app.views.AnswerQuestionView({model: app.askQue});
+					// app.ansQuestionView.render();
+				}
+				console.log("error");
+			}
+		});
+
+		// $.post('/logout', function(response) {
+		//    if (response.success) {
+		//        // Redirect to the login page or any other page as needed
+		//        window.location.href = "/login";
+		//    }
+		// });
+		// window.location.href = "";
 	}
 });
