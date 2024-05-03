@@ -194,7 +194,7 @@ app.routers.AppRouter = Backbone.Router.extend({
 	answerquestion:function (questionid){
 		console.log("answerQuestion route : "+ questionid);
 		userJson = JSON.parse(localStorage.getItem("user"));
-		$userid = userJson.user_id;
+		$user_id = userJson.user_id;
 		console.log("user"+userJson);
 		if(userJson != null){
 			app.user = new app.models.User(userJson);
@@ -207,6 +207,7 @@ app.routers.AppRouter = Backbone.Router.extend({
 					console.log("sucess");
 					responseQ['username'] = app.user.get("username");
 					var questionModel = new app.models.Questions(responseQ);
+					// questionModel['user_id'] = $user_id;
 					// var urlBookmark = app.user.urlAskQuestion + "getBookmark/?questionid=" + questionid + "&userid=" + $userid;
 
 					var urlBookmark = app.user.urlAskQuestion + "getBookmark";
@@ -217,10 +218,11 @@ app.routers.AppRouter = Backbone.Router.extend({
 						type: "POST",
 						data: {
 							"questionid": questionid,
-							"userid": $userid
+							"userid": $user_id
 						},
 						success: function(responseB){
 							console.log("response: "+ responseB.is_bookmark);
+							// responseB['user_id'] = $user_id;
 							if(responseB.is_bookmark){
 								questionModel.set("is_bookmark", true);
 								console.log("true bookmarked");

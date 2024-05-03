@@ -98,8 +98,8 @@ class Question extends REST_Controller{
 
 		$userid = strip_tags($this->post('user_id'));
 		$title = strip_tags($this->post('title'));
-		$question = strip_tags($this->post('question'));
-		$expectationQ = strip_tags($this->post('expectationQ'));
+		$question = $this->post('question');
+		$expectationQ = $this->post('expectationQ');
 		$tags = strip_tags($this->post('tags'));
 		$category = strip_tags($this->post('category'));
 		$qaddeddate = strip_tags($this->post('qaddeddate'));

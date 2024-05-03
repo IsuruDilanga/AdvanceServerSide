@@ -304,169 +304,181 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</div>
 
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!--			<form class="form-inline my-2 my-lg-0">-->
-<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--			</form>-->
-<!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 30px">-->
-<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
-<!---->
-<!--			</div>-->
-<!--		</nav>-->
-<!--	</div>-->
 
-	<div class="container">
-		<div class="row user-row">
-			<div class="col-sm-8" >
+	<div class="container" >
+		<div class="row" style="margin-top: 100px">
+			<div class="col-sm-2">
+				<div class="slide_navbar">
+					<div class="d-flex flex-column slide_navbar-div " style=" ">
+						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+						<!--							<span class="fs-4">Sidebar</span>-->
+						<!--						</a>-->
+						<div class="slid-nav-li">
+							<ul class="nav nav-pills flex-column mb-auto" >
+								<li class="nav-item">
+									<a href="#" class="nav-link" aria-current="page" >
+										<i class="fa-solid fa-house"></i><span class="side-title">Home</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/bookmark/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-bookmark"></i><span class="side-title">Saves</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/user/<%=user_id%>" class="nav-link link-dark" style="background-color: #eaeaea;">
+										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!--						<hr>-->
+						<!--						<div class="dropdown">-->
+						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
+						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+						<!--								<strong>mdo</strong>-->
+						<!--							</a>-->
+						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
+						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
+						<!--								<li><hr class="dropdown-divider"></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
+						<!--							</ul>-->
+						<!--						</div>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-10" style="margin-left: auto;">
 				<div class="user-details">
-					<table>
-						<tr>
-							<td><span>User Name </span></td>
-							<td><input type="text" value="<%=username%>" disabled id="editusername"></td>
-						</tr>
-						<tr>
-							<td><span>Display Name </span></td>
-							<td><input type="text" value="<%=name%>" disabled id="editname"></td>
-						</tr>
-						<tr>
-							<td><span>Email </span></td>
-							<td><input type="email" value="<%=email%>" disabled id="editemail"></td>
-						</tr>
-						<tr>
-							<td><span>Occupation </span></td>
-							<td>
-								<select class="user-occupation" disabled id="editOccupation">
-									<option value="<%=occupation%>"><%=occupation%></option>
-									<option value="student">Student</option>
-									<option value="employee">Employee</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td>
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="user-image" style="margin-top: 20px">
+								<% if (userimage != "") { %>
+								<img src="<%=userimage%>" alt="User Image" >
+								<% } else { %>
+								<img src="../../assets/images/userimage/face-scan.png" alt="User Image" >
+								<% } %>
+							</div>
+						</div>
+						<div class="col-sm-7" style="margin-left: 30px">
+							<table>
+								<tr>
+									<td><span>User Name </span></td>
+									<td><input type="text" value="<%=username%>" disabled id="editusername"></td>
+								</tr>
+								<tr>
+									<td><span>Display Name </span></td>
+									<td><input type="text" value="<%=name%>" disabled id="editname"></td>
+								</tr>
+								<tr>
+									<td><span>Email </span></td>
+									<td><input type="email" value="<%=email%>" disabled id="editemail"></td>
+								</tr>
+								<tr>
+									<td><span>Occupation </span></td>
+									<td>
+										<select class="user-occupation" disabled id="editOccupation">
+											<option value="<%=occupation%>"><%=occupation%></option>
+											<option value="student">Student</option>
+											<option value="employee">Employee</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="edit-btns">
+							<button type="button" class="btn btn-primary" id="edit_userdetails_btn">Edit User Details</button>
+							<button type="button" class="btn btn-primary" id="edit_userpassword_btn">Change Password</button>
+							<button type="button" class="btn btn-primary" id="edit_userchangedp_btn">Change Profile Pic</button>
+							<input type="file" id="upload_image_input" style="display: none;" accept="image/*">
+						</div>
+					</div>
+					<div class="pro-bar" style="margin-top: 50px">
+						<div class="row">
+							<div class="col-sm-4">
 								<p>Answered Questions: <%= answerquestioncnt %></p>
 								<% let anscntstar = Math.floor(answerquestioncnt / 10); %>
 								<% if(anscntstar >= 1) { %>
-									<% for (let i = 0; i < anscntstar; i++) { %>
-										<i class="fa-solid fa-star" style="color: gold"></i>
-									<% } %>
+								<% for (let i = 0; i < anscntstar; i++) { %>
+								<i class="fa-solid fa-star" style="color: gold"></i>
 								<% } %>
-							</td>
-							<td>
-								<div class="progress">
-									<% const answerCnt = answerquestioncnt % 10; %>
+								<% } %>
+							</div>
+							<div class="col-sm-8">
+								<div class="progress" style="width: 450px">
+									<% let answerCnt = answerquestioncnt % 10; %>
 									<% for (let i = 0; i < answerCnt; i++) { %>
 									<div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
 									<% } %>
 								</div>
-							</td>
-						</tr>
-						<tr>
-							<td>
+							</div>
+						</div>
+						<div class="row" style="margin-top: 50px">
+							<div class="col-sm-4">
 								<p>Asked Questions: <%= askquestioncnt %></p>
 								<% let askcntstar = Math.floor(askquestioncnt / 10); %>
 								<% if(askcntstar >= 1) { %>
-
-									<% for (let i = 0; i < askcntstar; i++) { %>
-										<i class="fa-solid fa-star" style="color: gold"></i>
-									<% } %>
+								<% for (let i = 0; i < askcntstar; i++) { %>
+								<i class="fa-solid fa-star" style="color: gold"></i>
 								<% } %>
-							</td>
-							<td>
-								<div class="progress">
-									<% const askCnt = askquestioncnt % 10; %>
+								<% } %>
+							</div>
+							<div class="col-sm-8" >
+								<div class="progress" style="width: 450px">
+									<% let askCnt = askquestioncnt % 10; %>
 									<% for (let i = 0; i < askCnt; i++) { %>
 									<div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
 									<% } %>
 								</div>
-							</td>
-
-<!--							<td>-->
-<!--								<span>answerQ: <%=answerquestioncnt%> </span>-->
-<!--								<span>askQ: <%=askquestioncnt%></span>-->
-<!---->
-<!--							</td>-->
-						</tr>
-
-					</table>
-
-					<div class="edit-btns">
-						<button type="button" class="btn btn-primary" id="edit_userdetails_btn">Edit User Details</button>
-						<button type="button" class="btn btn-primary" id="edit_userpassword_btn">Change Password</button>
-						<button type="button" class="btn btn-primary" id="edit_userchangedp_btn">Change Profile Pic</button>
-						<input type="file" id="upload_image_input" style="display: none;" accept="image/*">
-
+							</div>
+						</div>
 					</div>
 				</div>
 
-			</div>
-			<div class="col-sm-4">
-				<div class="user-image">
-					<% if (userimage != "") { %>
-						<img src="<%=userimage%>" alt="User Image" >
-					<% } else { %>
-						<img src="../../assets/images/userimage/face-scan.png" alt="User Image" >
-					<% } %>
-				</div>
-			</div>
-		</div>
-
-		<!-- Add this HTML for the modal dialog -->
-		<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="passwordModalLabel">Change Password</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<form id="changePasswordForm">
-							<div class="form-group">
-								<label for="oldPassword">Old Password</label>
-								<input type="password" class="form-control" id="oldPassword" placeholder="Enter old password" required>
+					<!-- Add this HTML for the modal dialog -->
+					<div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true" >
+						<div class="modal-dialog" role="document" style="margin-top: 150px">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="passwordModalLabel">Change Password</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<form id="changePasswordForm">
+										<div class="form-group">
+											<label for="oldPassword">Old Password</label>
+											<input type="password" class="form-control" id="oldPassword" placeholder="Enter old password" required>
+										</div>
+										<div class="form-group">
+											<label for="newPassword">New Password</label>
+											<input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
+										</div>
+										<div class="form-group">
+											<label for="confirmPassword">Confirm Password</label>
+											<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
+										</div>
+									</form>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary" id="submitPasswordChange">Save changes</button>
+								</div>
 							</div>
-							<div class="form-group">
-								<label for="newPassword">New Password</label>
-								<input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
-							</div>
-							<div class="form-group">
-								<label for="confirmPassword">Confirm Password</label>
-								<input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
-							</div>
-						</form>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" id="submitPasswordChange">Save changes</button>
-					</div>
-				</div>
 			</div>
 		</div>
-
 	</div>
+
+
 
 </script>
 
@@ -497,96 +509,172 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</div>
 
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!--			<form class="form-inline my-2 my-lg-0">-->
-<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--			</form>-->
+	<div class="container" >
+		<div class="row" style="margin-top: 100px">
+			<div class="col-sm-2">
+				<div class="slide_navbar">
+					<div class="d-flex flex-column slide_navbar-div " style=" ">
+						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+						<!--							<span class="fs-4">Sidebar</span>-->
+						<!--						</a>-->
+						<div class="slid-nav-li">
+							<ul class="nav nav-pills flex-column mb-auto" >
+								<li class="nav-item">
+									<a href="#" class="nav-link" aria-current="page">
+										<i class="fa-solid fa-house"></i><span class="side-title">Home</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/bookmark/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-bookmark"></i><span class="side-title">Saves</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/user/<%=user_id%>" class="nav-link link-dark">
+										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						<!--						<hr>-->
+						<!--						<div class="dropdown">-->
+						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
+						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+						<!--								<strong>mdo</strong>-->
+						<!--							</a>-->
+						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
+						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
+						<!--								<li><hr class="dropdown-divider"></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
+						<!--							</ul>-->
+						<!--						</div>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-10" style="margin-left: auto;">
+				<h3 class="question-page-title" >Ask Question from Community</h3>
+
+				<div class="question-title">
+					<p class="topic">Title</p>
+					<p style="font-size: 12px">Be specific and imaging you're asking a question to another person</p>
+
+					<input type="text" class="form-control form-title" placeholder="Enter Question Title"
+						   required id="inputQuestionTitle" name="inputQuestionTitle">
+				</div>
+
+				<div class="question-title">
+					<p class="topic">What are the details of your problem</p>
+					<p style="font-size: 12px">Introduce the problem and expand on what you put in the title. Minimum 20 characters</p>
+
+					<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"
+							  rows="3" required></textarea>
+				</div>
+
+				<div class="question-title">
+					<p class="topic">What did you try and what were you expecting?</p>
+					<p style="font-size: 12px">describe what you tried, what you expected to happen, and what actually
+						resulted. Minimum 20 Characters</p>
+					<textarea class="form-control form-title" id="inputQuestionExpectation" name="inputQuestionExpectation"
+							  rows="3" required></textarea>
+				</div>
+
+				<div class="question-title">
+					<p class="topic">Upload Image</p>
+					<p style="font-size: 12px">Upload an image related to your question (optional)</p>
+					<input type="file" class="form-control-file" id="imageUpload" name="imageUpload">
+					<!-- Optionally, include a preview section here -->
+				</div>
+
+				<div class="question-title">
+					<p class="topic">Tags</p>
+					<p style="font-size: 12px">Add up to 5 tags to describe what your question is about. Start typing to see suggestion </p>
+					<input type="text" class="form-control form-title" placeholder="e.g. (javascript, react, nodejs)"
+						   required id="inputQuestionTags" name="inputQuestionTags">
+				</div>
+
+				<div class="question-title">
+					<select class="form-control" required id="questionCategory">
+						<option value="" selected disabled>Category</option>
+						<option value="software">Software</option>
+						<option value="hardware">Hardware</option>
+						<option value="programming">Programming</option>
+						<option value="networking">Networking</option>
+						<option value="security">Security</option>
+						<option value="database">Database</option>
+						<option value="web-development">Web Development</option>
+						<option value="mobile-development">Mobile Development</option>
+						<option value="cloud-computing">Cloud Computing</option>
+						<option value="artificial-intelligence">Artificial Intelligence</option>
+					</select>
+				</div>
+
+				<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>
+			</div>
+		</div>
+	</div>
+
+<!--	<h3 class="question-page-title" >Ask a Technical Questions</h3>-->
 <!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#home/user/<%=user_id%>" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 30px">-->
-<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
+<!--	<div class="question-title">-->
+<!--		<p class="topic">Title</p>-->
+<!--		<p style="font-size: 12px">Be specific and imaging you're asking a question to another person</p>-->
 <!---->
-<!--			</div>-->
-<!--		</nav>-->
-<!---->
+<!--		<input type="text" class="form-control form-title" placeholder="Enter Question Title"-->
+<!--			   required id="inputQuestionTitle" name="inputQuestionTitle">-->
 <!--	</div>-->
-
-	<h3 class="question-page-title" >Ask a Technical Questions</h3>
-
-	<div class="question-title">
-		<p class="topic">Title</p>
-		<p style="font-size: 12px">Be specific and imaging you're asking a question to another person</p>
-
-		<input type="text" class="form-control form-title" placeholder="Enter Question Title"
-			   required id="inputQuestionTitle" name="inputQuestionTitle">
-	</div>
-
-	<div class="question-title">
-		<p class="topic">What are the details of your problem</p>
-		<p style="font-size: 12px">Introduce the problem and expand on what you put in the title. Minimum 20 characters</p>
-
-		<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"
-				  rows="3" required></textarea>
-	</div>
-
-	<div class="question-title">
-		<p class="topic">What did you try and what were you expecting?</p>
-		<p style="font-size: 12px">describe what you tried, what you expected to happen, and what actually
-				resulted. Minimum 20 Characters</p>
-		<textarea class="form-control form-title" id="inputQuestionExpectation" name="inputQuestionExpectation"
-				  rows="3" required></textarea>
-	</div>
-
-	<div class="question-title">
-		<p class="topic">Upload Image</p>
-		<p style="font-size: 12px">Upload an image related to your question (optional)</p>
-		<input type="file" class="form-control-file" id="imageUpload" name="imageUpload">
-		<!-- Optionally, include a preview section here -->
-	</div>
-
-	<div class="question-title">
-		<p class="topic">Tags</p>
-		<p style="font-size: 12px">Add up to 5 tags to describe what your question is about. Start typing to see suggestion </p>
-		<input type="text" class="form-control form-title" placeholder="e.g. (javascript, react, nodejs)"
-			   required id="inputQuestionTags" name="inputQuestionTags">
-	</div>
-
-	<div class="question-title">
-		<select class="form-control" required id="questionCategory">
-			<option value="" selected disabled>Category</option>
-			<option value="software">Software</option>
-			<option value="hardware">Hardware</option>
-			<option value="programming">Programming</option>
-			<option value="networking">Networking</option>
-			<option value="security">Security</option>
-			<option value="database">Database</option>
-			<option value="web-development">Web Development</option>
-			<option value="mobile-development">Mobile Development</option>
-			<option value="cloud-computing">Cloud Computing</option>
-			<option value="artificial-intelligence">Artificial Intelligence</option>
-		</select>
-	</div>
-
-	<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>
+<!---->
+<!--	<div class="question-title">-->
+<!--		<p class="topic">What are the details of your problem</p>-->
+<!--		<p style="font-size: 12px">Introduce the problem and expand on what you put in the title. Minimum 20 characters</p>-->
+<!---->
+<!--		<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"-->
+<!--				  rows="3" required></textarea>-->
+<!--	</div>-->
+<!---->
+<!--	<div class="question-title">-->
+<!--		<p class="topic">What did you try and what were you expecting?</p>-->
+<!--		<p style="font-size: 12px">describe what you tried, what you expected to happen, and what actually-->
+<!--				resulted. Minimum 20 Characters</p>-->
+<!--		<textarea class="form-control form-title" id="inputQuestionExpectation" name="inputQuestionExpectation"-->
+<!--				  rows="3" required></textarea>-->
+<!--	</div>-->
+<!---->
+<!--	<div class="question-title">-->
+<!--		<p class="topic">Upload Image</p>-->
+<!--		<p style="font-size: 12px">Upload an image related to your question (optional)</p>-->
+<!--		<input type="file" class="form-control-file" id="imageUpload" name="imageUpload">-->
+<!--		Optionally, include a preview section here -->
+<!--	</div>-->
+<!---->
+<!--	<div class="question-title">-->
+<!--		<p class="topic">Tags</p>-->
+<!--		<p style="font-size: 12px">Add up to 5 tags to describe what your question is about. Start typing to see suggestion </p>-->
+<!--		<input type="text" class="form-control form-title" placeholder="e.g. (javascript, react, nodejs)"-->
+<!--			   required id="inputQuestionTags" name="inputQuestionTags">-->
+<!--	</div>-->
+<!---->
+<!--	<div class="question-title">-->
+<!--		<select class="form-control" required id="questionCategory">-->
+<!--			<option value="" selected disabled>Category</option>-->
+<!--			<option value="software">Software</option>-->
+<!--			<option value="hardware">Hardware</option>-->
+<!--			<option value="programming">Programming</option>-->
+<!--			<option value="networking">Networking</option>-->
+<!--			<option value="security">Security</option>-->
+<!--			<option value="database">Database</option>-->
+<!--			<option value="web-development">Web Development</option>-->
+<!--			<option value="mobile-development">Mobile Development</option>-->
+<!--			<option value="cloud-computing">Cloud Computing</option>-->
+<!--			<option value="artificial-intelligence">Artificial Intelligence</option>-->
+<!--		</select>-->
+<!--	</div>-->
+<!---->
+<!--	<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>-->
 </script>
 
 <script type="text/template" id="answer-question-template">
@@ -595,75 +683,191 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</div>
 
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!--			<form class="form-inline my-2 my-lg-0">-->
-<!--				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--				<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--			</form>-->
-<!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 20px">-->
-<!---->
-<!--						<a href="#" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
-<!---->
-<!--			</div>-->
-<!--		</nav>-->
-<!---->
-<!--	</div>-->
+	<div class="container" >
+		<div class="row" style="margin-top: 100px">
+			<div class="col-sm-2">
+				<div class="slide_navbar">
+					<div class="d-flex flex-column slide_navbar-div " style=" ">
+						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+						<!--							<span class="fs-4">Sidebar</span>-->
+						<!--						</a>-->
+						<div class="slid-nav-li">
+							<ul class="nav nav-pills flex-column mb-auto" >
+								<li class="nav-item">
+									<a href="#" class="nav-link" aria-current="page">
+										<i class="fa-solid fa-house"></i><span class="side-title">Home</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/bookmark/<%=userid%>" class="nav-link link-dark">
+										<i class="fa-solid fa-bookmark"></i><span class="side-title">Saves</span>
+									</a>
+								</li>
+								<li>
+									<a href="#home/user/<%=userid%>" class="nav-link link-dark">
+										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
+									</a>
+								</li>
+							</ul>
+						</div>
 
-	<div class="container-fluid answer-contain" style="marg">
-		<div class="row">
-			<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">
-				<div class="arrow-up" id="up-question-view" data-clicked="false">
-					<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 30px"></i>
+						<!--						<hr>-->
+						<!--						<div class="dropdown">-->
+						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
+						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
+						<!--								<strong>mdo</strong>-->
+						<!--							</a>-->
+						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
+						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
+						<!--								<li><hr class="dropdown-divider"></li>-->
+						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
+						<!--							</ul>-->
+						<!--						</div>-->
+					</div>
 				</div>
-				<p class="view-status" id="question-view-status"><%=viewstatus%></p>
-				<div class="arrow-down" id="down-question-view" data-clicked="false">
-					<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 30px"></i>
-				</div>
-				<% if (is_bookmark) { %>
-					<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>
-				<% } else {%>
-					<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>
-				<% } %>
+
 			</div>
-			<div class="col-sm-11 question-display">
-<!--				<div class="question-display">-->
-					<div class="ans-question-title">
-						<h3 class="answer"><%= title %></h3>
-						<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>
+			<div class="col-sm-10" style="margin-left: auto;">
+				<div class="container-fluid answer-contain" >
+					<div class="row" >
+						<div class="col-sm-11 question-display" >
+							<div class="ans-question-title">
+								<h3 class="answer"><%= title %></h3>
+								<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>
+								<div class="all-tags" style="display: flex;">
+									<% tags.forEach(function(tag) { %>
+									<div class="tags-cover" style="margin-right: 10px">
+										<p><%= tag %></p>
+									</div>
+									<% }); %>
+								</div>
+							</div>
+
+							<div class="ans-question" style="margin-top: 20px">
+								<p><%= question %></p>
+								<p><%= expectationQ %></p>
+								<% if (questionimage !== '') { %>
+								<img src="<%= questionimage %>" alt="Question Image">
+								<% } %>
+							</div>
+						</div>
+						<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">
+							<div class="arrow-up" id="up-question-view" data-clicked="false">
+								<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 20px"></i>
+							</div>
+							<p class="view-status" id="question-view-status"><%=viewstatus%></p>
+							<div class="arrow-down" id="down-question-view" data-clicked="false">
+								<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 20px"></i>
+							</div>
+							<% if (is_bookmark) { %>
+							<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>
+							<% } else {%>
+							<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>
+							<% } %>
+						</div>
+					</div>
+<!--					<div class="row">-->
+<!--						<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">-->
+<!--							<div class="arrow-up" id="up-question-view" data-clicked="false">-->
+<!--								<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 30px"></i>-->
+<!--							</div>-->
+<!--							<p class="view-status" id="question-view-status"><%=viewstatus%></p>-->
+<!--							<div class="arrow-down" id="down-question-view" data-clicked="false">-->
+<!--								<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 30px"></i>-->
+<!--							</div>-->
+<!--							<% if (is_bookmark) { %>-->
+<!--							<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>-->
+<!--							<% } else {%>-->
+<!--							<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>-->
+<!--							<% } %>-->
+<!--						</div>-->
+<!--						<div class="col-sm-11 question-display">-->
+<!--							<div class="ans-question-title">-->
+<!--								<h3 class="answer"><%= title %></h3>-->
+<!--								<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>-->
+<!--							</div>-->
+<!---->
+<!--							<div class="ans-question">-->
+<!--								<p><%= question %></p>-->
+<!--								<p><%= expectationQ %></p>-->
+<!--								<% if (questionimage !== '') { %>-->
+<!--								<img src="<%= questionimage %>" alt="Question Image">-->
+<!--								<% } %>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</div>-->
+				</div>
+				<div class="existing-answer-area" id="answer" style="display: none">
+					<div class="top-answers" style="display: flex; justify-content: space-between; align-items: center;">
+					</div>
+				</div>
+
+				<div class="ans-que">
+					<div class="question-title">
+						<p class="topic">Your Answer</p>
+
+						<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"
+								  rows="3" required></textarea>
 					</div>
 
-					<div class="ans-question">
-						<p><%= question %></p>
-						<p><%= expectationQ %></p>
-						<!--		<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
-						<% if (questionimage !== '') { %>
-						<img src="<%= questionimage %>" alt="Question Image">
-						<% } %>
+					<div class="question-title">
+						<p class="topic">Upload Image</p>
+						<p style="font-size: 12px">Upload an image related to your Answer (optional)</p>
+						<input type="file" class="form-control-file" id="answerImageUpload" name="answerImageUpload">
+						<!-- Optionally, include a preview section here -->
 					</div>
-<!--				</div>-->
+
+					<div class="sub-answer">
+						<button type="submit" id="submit_answer" class="btn btn-primary ans-subbtn">Submit Answer</button>
+						<select class="form-control" required id="questionrate">
+							<option value="" selected disabled>Rate for Question</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
+<!--	<div class="container-fluid answer-contain" style="marg">-->
+<!--		<div class="row">-->
+<!--			<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">-->
+<!--				<div class="arrow-up" id="up-question-view" data-clicked="false">-->
+<!--					<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 30px"></i>-->
+<!--				</div>-->
+<!--				<p class="view-status" id="question-view-status"><%=viewstatus%></p>-->
+<!--				<div class="arrow-down" id="down-question-view" data-clicked="false">-->
+<!--					<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 30px"></i>-->
+<!--				</div>-->
+<!--				<% if (is_bookmark) { %>-->
+<!--					<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>-->
+<!--				<% } else {%>-->
+<!--					<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>-->
+<!--				<% } %>-->
+<!--			</div>-->
+<!--			<div class="col-sm-11 question-display">-->
+<!--				<div class="ans-question-title">-->
+<!--					<h3 class="answer"><%= title %></h3>-->
+<!--					<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>-->
+<!--				</div>-->
+<!---->
+<!--				<div class="ans-question">-->
+<!--					<p><%= question %></p>-->
+<!--					<p><%= expectationQ %></p>-->
+<!--					<% if (questionimage !== '') { %>-->
+<!--					<img src="<%= questionimage %>" alt="Question Image">-->
+<!--					<% } %>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
 <!--	<h1>answer Question Page</h1>-->
 <!--	<div class="question-display">-->
@@ -683,51 +887,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--	</div>-->
 
 
-	<div class="existing-answer-area" id="answer" style="display: none">
-		<div class="top-answers" style="display: flex; justify-content: space-between; align-items: center;">
-<!--			<h1>Answers</h1>-->
-		</div>
-	</div>
 
-	<div class="ans-que">
-		<div class="question-title">
-			<p class="topic">Your Answer</p>
-
-			<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"
-					  rows="3" required></textarea>
-		</div>
-
-		<div class="question-title">
-			<p class="topic">Upload Image</p>
-			<p style="font-size: 12px">Upload an image related to your Answer (optional)</p>
-			<input type="file" class="form-control-file" id="answerImageUpload" name="answerImageUpload">
-			<!-- Optionally, include a preview section here -->
-		</div>
-
-		<div class="sub-answer">
-			<button type="submit" id="submit_answer" class="btn btn-primary ans-subbtn">Submit Answer</button>
-			<select class="form-control" required id="questionrate">
-				<option value="" selected disabled>Rate for Question</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-			</select>
-			<button type="submit" id="submit_answer" class="btn btn-primary ans-subbtn">Add to bookmark</button>
-		</div>
-	</div>
 
 </script>
 
 <script type="text/template" id="answer-template">
-	<div class="one-question ex-answer">
+	<div class="ex-answer">
 		<p> <%= answer %> </p>
 		<% if (answerimage !== '') { %>
 		<img src="<%= answerimage %>" alt="Answer Image">
 		<% } %>
 <!--		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">-->
-		<p style="margin-top: 10px"><strong>Rate : </strong><%= answerrate %>  <strong>Added Date: </strong><%= answeraddeddate %></p>
+		<p style="margin-top: 10px"> <strong>Added Date: </strong><%= answeraddeddate %></p>
 	</div>
 </script>
 

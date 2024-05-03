@@ -107,8 +107,8 @@ function validateEditUserDetailsAddForm(){
 function validateQuestionAddForm() {
 	var question = {
 		'title': $("input#inputQuestionTitle").val(),
-		'question': $("textarea#inputQuestionDetails").val(),
-		'expectationQ': $("textarea#inputQuestionExpectation").val(),
+		'question': $("textarea#inputQuestionDetails").val().replace(/\n/g, '<br>'),
+		'expectationQ': $("textarea#inputQuestionExpectation").val().replace(/\n/g, '<br>'),
 		'questionimage': $("input#imageUpload")[0].files[0], // Store the image file directly
 		'category': $("select#questionCategory").val(),
 		'tags': $("input#inputQuestionTags").val(),

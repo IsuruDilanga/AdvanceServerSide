@@ -241,8 +241,12 @@ body {
 
 .nav-color .navbar-brand:hover {
 	color: #ffffff;
-	background-color: #3a6fa9;
 }
+
+/*.nav-color {*/
+/*	color: #202123;*/
+/*	background-color: #033c73;*/
+/*}*/
 
 .slide_navbar{
 	position: fixed;
@@ -324,9 +328,9 @@ body {
 	transition: transform 0.5s;
 }
 
-.one-question:hover{
-	transform: scale(1.02);
-}
+/*.one-question:hover{*/
+/*	transform: scale(1.02);*/
+/*}*/
 
 .one-question .single-question{
 	/*margin-top: 50px;*/
@@ -344,6 +348,15 @@ body {
 	border-radius: 20px;
 }
 
+.ans-question-title .tags-cover{
+	padding-top: 10px;
+	text-align: center;
+	width: 100px;
+	border: 0.4px solid gray;
+	/*border-color: #070303;*/
+	border-radius: 20px;
+}
+
 .one-question  p{
 	padding: 4px;
 	margin-bottom: 0;
@@ -351,7 +364,7 @@ body {
 
 .question-page-title{
 	font-size: 32px;
-	margin-top: 150px
+	margin-top: 80px
 }
 
 .question-title{
@@ -363,8 +376,8 @@ body {
 
 .question-title .topic{
 	font-family: "Poppins", sans-serif;
-	font-weight: 600;
-	font-size: 30px;
+	font-weight: 400;
+	font-size: 25px;
 	margin-bottom: 0;
 }
 
@@ -423,7 +436,7 @@ body {
 
 .question-display{
 	width: 2000px;
-	margin-top: 150px;
+	margin-top: 80px;
 	text-align: justify;
 	/*border: 1px solid;*/
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -440,11 +453,13 @@ body {
 }
 
 .ex-answer{
-	background-color: #f1f1f1;
+	margin-top: 15px;
+	background-color: #ffffff;
+	/*border: 1px solid #d7d7d7;*/
 	padding: 10px;
 	box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
 	/*border: 1px solid;*/
-	border-radius: 10px;
+	border-radius: 3px;
 	margin-bottom: 20px;
 }
 
@@ -462,15 +477,15 @@ body {
 
 .view-status{
 	font-family: "Poppins", sans-serif;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	font-size: 30px;
 	text-align: center;
 	margin-bottom: 0;
 }
 
 .arrow-up, .arrow-down{
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50px;
 	border: 1px solid black;
 	text-align: center;
@@ -484,7 +499,7 @@ body {
 }
 
 .add-to-bookmark{
-	font-size: 30px;
+	font-size: 20px;
 	margin-top: 20px;
 	text-align: center;
 	align-items: center;
@@ -504,28 +519,40 @@ body {
 .answer-contain{
 	width: 109%;
 	position: relative;
-	margin-left: -100px;
 }
 
 .user-details{
+	margin-top: 85px;
+	margin-left: 10px;
 	background-color: white;
+	/*width: 95%;*/
+	padding: 30px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+
+.user-details-start{
+	margin-top: 20px;
+	margin-left: 10px;
+	background-color: white;
+	/*width: 95%;*/
 	padding: 30px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 }
 
 .user-details span{
-	font-size: 30px;
+	font-size: 20px;
 	font-family: "Poppins", sans-serif;
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .user-details input{
-	font-size: 16px;
+	font-size: 14px;
 	font-family: "Poppins", sans-serif;
 	margin-bottom: 0;
-	margin-left: 10px;
-	width: 400px;
+	margin-left: 40px;
+	width: 300px;
 	padding: 10px;
 	border-radius: 7px;
 	border: 1px solid black;
@@ -535,8 +562,8 @@ body {
 	font-size: 16px;
 	font-family: "Poppins", sans-serif;
 	margin-bottom: 0;
-	margin-left: 10px;
-	width: 400px;
+	margin-left: 40px;
+	width: 300px;
 	padding: 10px;
 }
 
@@ -549,26 +576,26 @@ body {
 
 }
 
-.col-sm-4 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;	/*height: 100vh; */
-	background-color: #5fd4f5;
-}
+/*.col-sm-4 {*/
+/*	display: flex;*/
+/*	justify-content: center;*/
+/*	align-items: center;*/
+/*	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;	!*height: 100vh; *!*/
+/*	background-color: #5fd4f5;*/
+/*}*/
 
 .user-image img {
-	width: 300px;
-	height: 300px;
-	border: 2px solid black;
-	border-radius: 20%;
+	width: 200px;
+	height: 200px;
+	/*border: 2px solid black;*/
+	border-radius: 5px;
 }
 
 .edit-btns{
 	margin-top: 40px;
 	align-items: center;
 	justify-content: center;
-	display: flex;
+	/*display: flex;*/
 	gap: 30px;
 }
 
