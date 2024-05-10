@@ -15,7 +15,8 @@ app.views.homeView = Backbone.View.extend({
 		this.collection.each(function(question){
 			var questionView = new app.views.QuestionView({model: question});
 			questionView.render();
-		})
+		});
+
 	},
 	events:{
 		"click #ask_question_btn": "ask_question",

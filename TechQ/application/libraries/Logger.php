@@ -1,13 +1,22 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Logger {
-
-	public function log_controller_method() {
-		$CI =& get_instance();
-		$controller = $CI->router->fetch_class();
-		$method = $CI->router->fetch_method();
-		log_message('info', 'Current controller: ' . $controller . ' | Current method: ' . $method);
+	public function debug($message) {
+		$this->writeLog('DEBUG', $message);
 	}
 
+	public function info($message) {
+		$this->writeLog('INFO', $message);
+	}
+
+	public function error($message) {
+		$this->writeLog('ERROR', $message);
+	}
+
+	private function writeLog($level, $message) {
+		$log_message = '[' . date('Y-m-d H:i:s') . '] [' . $level . '] ' . $message . PHP_EOL;
+		// Write $log_message to a file or any other log destination
+		// For example:
+		file_put_contents(APPPATH . 'logs/logfile.log', $log_message, FILE_APPEND);
+	}
 }

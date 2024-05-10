@@ -2,18 +2,31 @@ var app = app || {};
 
 app.views.AnswerQuestionView = Backbone.View.extend({
 	el: '.container',
+	initialize: function() {
+		this.listenTo(this.model, 'change', this.render);
+		this.listenTo(this.collection, 'reset', this.render); // Assuming collection reset triggers re-render
+		this.bindEvents(); // Call function to bind events
+	},
 
-	render:function(){
+	bindEvents: function() {
+		this.$el.off('click', '#submit_answer').on('click', '#submit_answer', this.submitAnswer.bind(this));
+		this.$el.off('click', '#up-question-view').on('click', '#up-question-view', this.upQuestionView.bind(this));
+		this.$el.off('click', '#down-question-view').on('click', '#down-question-view', this.downQuestionView.bind(this));
+		this.$el.off('click', '#remove-bookmark').on('click', '#remove-bookmark', this.removeBookmark.bind(this));
+		this.$el.off('click', '#add-bookmark').on('click', '#add-bookmark', this.addBookmark.bind(this));
+	},
+
+	render: function() {
 		console.log('rendering answer question view');
-		console.log("app.attribute: " , this.model.attributes);
+		console.log("app.attribute: ", this.model.attributes);
 		template = _.template($('#answer-question-template').html());
 		this.$el.html(template(this.model.attributes));
 
-		app.navView = new app.views.NavBarView({model: app.user});
+		app.navView = new app.views.NavBarView({ model: app.user });
 		app.navView.render();
 
-		this.collection.each(function(answer){
-			var answerView = new app.views.AnswerView({model: answer});
+		this.collection.each(function(answer) {
+			var answerView = new app.views.AnswerView({ model: answer });
 			answerView.render();
 		});
 	},
@@ -26,11 +39,89 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		'click #add-bookmark': 'addBookmark'
 	},
 
+	// addBookmark: function (){
+	// 	console.log('addBookmark');
+	//
+	// 	var currentUrl = window.location.href;
+	//
+	// 	// Extract the last part of the URL after the last '/'
+	// 	var lastPart = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+	//
+	// 	// Extract the numeric part from the last part (assuming it's always at the end)
+	// 	var $questionid = parseInt(lastPart.match(/\d+$/)[0]);
+	//
+	// 	console.log("questionid form web: " +$questionid);
+	//
+	// 	$userJson = JSON.parse(localStorage.getItem("user"));
+	// 	$userid = $userJson['user_id'];
+	// 	console.log('userid: ', $userid);
+	//
+	// 	// $questionid = this.model.attributes.questionid;
+	// 	// $userid = this.model.attributes.user_id;
+	// 	var $bookmarkIcon = $('#add-bookmark');
+	//
+	// 	console.log('questionid: ', $questionid);
+	// 	console.log('userid: ', $userid);
+	//
+	// 	// var rBookmark = {
+	// 	// 	questionid: $questionid,
+	// 	// 	userid: $userid
+	// 	// };
+	//
+	// 	var url = this.model.url + 'add_bookmark?qid=' + $questionid + '&uid=' + $userid;
+	// 	count = 0;
+	// 	console.log('count: ' + count);
+	// 	if(count == 0){
+	// 		console.log('count 62: ' + count);
+	// 		let notificationShowing = false;
+	//
+	// 		app.user.fetch({
+	// 			"url": url,
+	// 			type: 'GET',
+	// 			success: (response) => {
+	// 				console.log('bookmark add');
+	// 				$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
+	// 				$bookmarkIcon.attr('id', 'remove-bookmark');
+	// 				new Noty({
+	// 					type: 'success',
+	// 					text: 'Bookmark add',
+	// 					timeout: 2000
+	// 				}).show();
+	//
+	// 			},
+	// 			error: (xhr, status, error) => {
+	// 				console.error('Error adding bookmark:', error);
+	// 				new Noty({
+	// 					type: 'error',
+	// 					text: 'Error adding bookmark',
+	// 					timeout: 2000
+	// 				}).show();
+	// 			}
+	// 		});
+	//
+	// 	}
+	//
+	// },
+
 	addBookmark: function (){
 		console.log('addBookmark');
 
-		$questionid = this.model.attributes.questionid;
-		$userid = this.model.attributes.userid;
+		var currentUrl = window.location.href;
+
+		// Extract the last part of the URL after the last '/'
+		var lastPart = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+
+		// Extract the numeric part from the last part (assuming it's always at the end)
+		var $questionid = parseInt(lastPart.match(/\d+$/)[0]);
+
+		console.log("questionid form web: " +$questionid);
+
+		$userJson = JSON.parse(localStorage.getItem("user"));
+		$userid = $userJson['user_id'];
+		console.log('userid: ', $userid);
+
+		// $questionid = this.model.attributes.questionid;
+		// $userid = this.model.attributes.user_id;
 		var $bookmarkIcon = $('#add-bookmark');
 
 		console.log('questionid: ', $questionid);
@@ -42,21 +133,39 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		};
 
 		var url = this.model.url + 'add_bookmark';
-		if($questionid != "" && $questionid != null) {
-			app.user.fetch({
+		count = 0;
+		console.log('count: ' + count);
+		if(count == 0){
+			console.log('count 62: ' + count);
+			let notificationShowing = false;
+
+			$.ajax({
 				"url": url,
 				type: 'POST',
 				data: rBookmark,
 				success: (response) => {
+					console.log("questionid: " + rBookmark["questionid"])
 					console.log('bookmark add');
 					$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
 					$bookmarkIcon.attr('id', 'remove-bookmark');
-					new Noty({
-						type: 'success',
-						text: 'Bookmark add',
-						timeout: 2000
-					}).show();
+					if (!notificationShowing) { // Check if a notification is currently showing
+						new Noty({
+							type: 'success',
+							text: 'Bookmark add',
+							timeout: 2000,
+							callbacks: {
+								afterClose: function() {
+									notificationShowing = false; // Reset the flag after the notification is closed
+								}
+							}
+						}).show();
+						notificationShowing = true; // Set the flag to true when the notification is shown
+					}
+					count++;
+					console.log('count 81: ' + count);
 
+
+					// $bookmarkIcon.on('click', this.removeBookmark.unbind(this));
 				},
 				error: (xhr, status, error) => {
 					console.error('Error adding bookmark:', error);
@@ -65,16 +174,165 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 						text: 'Error adding bookmark',
 						timeout: 2000
 					}).show();
-				}
+
+					// $bookmarkIcon.on('click', this.addBookmark.bind(this));
+				},
+				// $("#add-bookmark").unbind();
 			});
+
+		}
+
+		if($questionid != "" && $questionid != null) {
+			// $.ajax({
+			// 	"url": url,
+			// 	type: 'POST',
+			// 	data: rBookmark,
+			// 	success: (response) => {
+			// 		rBookmark["questionid"] = "";
+			// 		rBookmark["userid"] = "";
+			// 		console.log("questionid: " + rBookmark["questionid"])
+			// 		console.log('bookmark add');
+			// 		$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
+			// 		$bookmarkIcon.attr('id', 'remove-bookmark');
+			// 		new Noty({
+			// 			type: 'success',
+			// 			text: 'Bookmark add',
+			// 			timeout: 2000
+			// 		}).show();
+			//
+			// 		// $bookmarkIcon.on('click', this.removeBookmark.bind(this));
+			// 	},
+			// 	error: (xhr, status, error) => {
+			// 		console.error('Error adding bookmark:', error);
+			// 		new Noty({
+			// 			type: 'error',
+			// 			text: 'Error adding bookmark',
+			// 			timeout: 2000
+			// 		}).show();
+			//
+			// 		// $bookmarkIcon.on('click', this.addBookmark.bind(this));
+			// 	}
+			// });
+			// app.user.fetch({
+			// 	"url": url,
+			// 	type: 'POST',
+			// 	data: rBookmark,
+			// 	success: (response) => {
+			// 		rBookmark["questionid"] = "";
+			// 		rBookmark["userid"] = "";
+			// 		console.log('bookmark add');
+			// 		$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
+			// 		$bookmarkIcon.attr('id', 'remove-bookmark');
+			// 		new Noty({
+			// 			type: 'success',
+			// 			text: 'Bookmark add',
+			// 			timeout: 2000
+			// 		}).show();
+			//
+			// 	},
+			// 	error: (xhr, status, error) => {
+			// 		console.error('Error adding bookmark:', error);
+			// 		new Noty({
+			// 			type: 'error',
+			// 			text: 'Error adding bookmark',
+			// 			timeout: 2000
+			// 		}).show();
+			// 	}
+			// });
 		}
 	},
+
+	// addBookmark: function (){
+	// 	console.log('addBookmark');
+	//
+	//
+	//
+	// 	var $bookmarkIcon = $('#add-bookmark');
+	//
+	// 	// Disable the button to prevent multiple clicks
+	// 	$bookmarkIcon.prop('disabled', true);
+	//
+	// 	// Check if bookmark addition process is already in progress
+	// 	if ($bookmarkIcon.hasClass('bookmark-in-progress')) {
+	// 		console.log('Bookmark addition process is already in progress.');
+	// 		$bookmarkIcon.prop('disabled', false); // Re-enable the button
+	// 		return; // Exit function to prevent multiple requests
+	// 	}
+	//
+	// 	// Set flag to indicate bookmark addition process is in progress
+	// 	$bookmarkIcon.addClass('bookmark-in-progress');
+	//
+	// 	$userJson = JSON.parse(localStorage.getItem("user"));
+	// 	$userid = $userJson['user_id'];
+	// 	console.log('userid: ', $userid);
+	//
+	// 	$questionid = this.model.attributes.questionid;
+	//
+	// 	console.log('questionid: ', $questionid);
+	// 	console.log('userid: ', $userid);
+	//
+	// 	var rBookmark = {
+	// 		questionid: $questionid,
+	// 		userid: $userid
+	// 	};
+	//
+	// 	var url = this.model.url + 'add_bookmark';
+	// 	if($questionid != "" && $questionid != null) {
+	// 		$.ajax({
+	// 			"url": url,
+	// 			type: 'POST',
+	// 			data: rBookmark,
+	// 			success: (response) => {
+	// 				rBookmark["questionid"] = "";
+	// 				rBookmark["userid"] = "";
+	// 				console.log('bookmark add');
+	// 				$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid');
+	// 				$bookmarkIcon.attr('id', 'remove-bookmark');
+	// 				new Noty({
+	// 					type: 'success',
+	// 					text: 'Bookmark add',
+	// 					timeout: 2000
+	// 				}).show();
+	// 			},
+	// 			error: (xhr, status, error) => {
+	// 				console.error('Error adding bookmark:', error);
+	// 				new Noty({
+	// 					type: 'error',
+	// 					text: 'Error adding bookmark',
+	// 					timeout: 2000
+	// 				}).show();
+	// 			},
+	// 			complete: () => {
+	// 				// Enable the button after the request completes
+	// 				$bookmarkIcon.prop('disabled', false);
+	//
+	// 				// Reset flag after the request completes
+	// 				$bookmarkIcon.removeClass('bookmark-in-progress');
+	// 			}
+	// 		});
+	// 	}
+	// },
+
+
 
 	removeBookmark: function (){
 		console.log('removeBook');
 
-		$questionid = this.model.attributes.questionid;
-		$userid = this.model.attributes.userid;
+		var currentUrl = window.location.href;
+
+		// Extract the last part of the URL after the last '/'
+		var lastPart = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+
+		// Extract the numeric part from the last part (assuming it's always at the end)
+		var $questionid = parseInt(lastPart.match(/\d+$/)[0]);
+
+		console.log("questionid form web: " +$questionid);
+
+		$userJson = JSON.parse(localStorage.getItem("user"));
+		$userid = $userJson['user_id'];
+
+		// $questionid = this.model.attributes.questionid;
+		// $userid = this.model.attributes.userid;
 		var $bookmarkIcon = $('#remove-bookmark');
 
 		console.log('questionid: ', $questionid);
@@ -92,6 +350,8 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 				type: 'POST',
 				data: rBookmark,
 				success: (response) => {
+					rBookmark["questionid"] = "";
+					rBookmark["userid"] = "";
 					console.log('bookmark removed');
 					$bookmarkIcon.removeClass('fa-solid').addClass('fa-regular'); // Change icon to regular
 					$bookmarkIcon.attr('id', 'add-bookmark');

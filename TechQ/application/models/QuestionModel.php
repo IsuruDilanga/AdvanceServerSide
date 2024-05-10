@@ -192,13 +192,35 @@ class QuestionModel extends CI_Model{
 	}
 
 	public function addBookmark($questionid, $userid){
+		// Check if the combination of questionid and userid already exists in the database
+		$this->db->where('questionid', $questionid);
+		$this->db->where('userid', $userid);
+		$existingBookmark = $this->db->get('BookmarkQue')->row();
+
+		// If the combination already exists, return false to indicate that the bookmark was not added
+		if($existingBookmark) {
+			return false;
+		}
+
+		// If the combination does not exist, add the new bookmark to the database
 		$bookmarkData = array(
 			'questionid' => $questionid,
 			'userid' => $userid
 		);
 		$bookmark = $this->db->insert('BookmarkQue', $bookmarkData);
+
+		// Return true to indicate that the bookmark was successfully added
 		return $bookmark;
 	}
+
+//	public function addBookmark($questionid, $userid){
+//		$bookmarkData = array(
+//			'questionid' => $questionid,
+//			'userid' => $userid
+//		);
+//		$bookmark = $this->db->insert('BookmarkQue', $bookmarkData);
+//		return $bookmark;
+//	}
 
 	public function getBookmarkQuestions($userid){
 		$this->db->select('Questions.*');

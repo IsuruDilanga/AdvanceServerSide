@@ -599,7 +599,13 @@ body {
 	gap: 30px;
 }
 
+.footer-07{
+	background-color: black;
+}
 
+footer{
+	padding: 7em 0;
+}
 
 
 

@@ -12,6 +12,7 @@ class Answer extends REST_Controller{
 	}
 
 	public function getAnswers_get($questionid){
+
 		$answers = $this->AnswerModel->getAnswers($questionid);
 
 //		$this->response($answers, REST_Controller::HTTP_OK);

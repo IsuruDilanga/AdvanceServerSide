@@ -24,6 +24,15 @@ function validateRegisterForm() {
 		'name': $("input#regName").val(),
 		'email': $("input#regEmail").val(),
 	};
+
+	var emailRegex = /\S+@\S+\.\S+/;
+
+	// Check if the email matches the regular expression for email validation
+	if (!emailRegex.test(user.email)) {
+		// If email is not valid, return false
+		return "Invalid email address";
+	}
+
 	if (!user.username || !user.password || !user.occupation || !user.name || !user.email) {
 		return false;
 	}

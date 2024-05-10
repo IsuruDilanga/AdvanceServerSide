@@ -3,6 +3,15 @@ var app = app || {};
 app.views.AddQuestionView = Backbone.View.extend({
 	el: '.container',
 
+	initialize:function (){
+		this.listenTo(this.model, 'change', this.render);
+		this.bindEvents();
+	},
+
+	bindEvents: function(){
+		this.$el.off('click', '#submit_question').on('click', '#submit_question', this.submitquestion.bind(this));
+	},
+
 	render:function () {
 		console.log('rendering add question view');
 		template = _.template($('#add_question_template').html());

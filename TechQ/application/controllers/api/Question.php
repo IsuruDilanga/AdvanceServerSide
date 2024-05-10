@@ -31,6 +31,46 @@ class Question extends REST_Controller{
 		}
 	}
 
+//	public function displayAllQuestions_get($question_id = FALSE){
+//		// Set session timeout to 60 seconds if session is not active
+//		if (!session_id()) {
+//			ini_set('session.cookie_lifetime', 60);
+//		}
+//
+//		// Start session
+////		session_start();
+//
+//		// Check if session is active and not expired
+//		if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 60)) {
+//			// Session has expired, destroy session and redirect to login page
+//			session_unset();
+//			session_destroy();
+//			redirect('http://localhost/TechQ/index.php/usershow/'); // Assuming 'login' is the route to your login page
+//		} else {
+//			// Session is active or has not expired, update last activity time
+//			$_SESSION['last_activity'] = time();
+//
+//			log_message('debug', 'Question::displayAllQuestions_get() - $question_id: ' . $question_id);
+//
+//			if ($question_id === FALSE) {
+//				$questions = $this->QuestionModel->getAllQuestions();
+//			} else {
+//				$questions = $this->QuestionModel->getQuestion($question_id);
+//			}
+//
+//			// Check if the user data exists
+//			if (!empty($questions)) {
+//				$this->response($questions, REST_Controller::HTTP_OK);
+//			} else {
+//				$this->response(array(
+//					'status' => FALSE,
+//					'message' => 'No questions found.'
+//				), REST_Controller::HTTP_NOT_FOUND);
+//			}
+//		}
+//	}
+
+
 	public function bookmarkQuestions_get($userid){
 		$questions = $this->QuestionModel->getBookmarkQuestions($userid);
 		if($questions) {
@@ -174,6 +214,23 @@ class Question extends REST_Controller{
 			$this->response("Failed to remove question from bookmark.", REST_Controller::HTTP_BAD_REQUEST);
 		}
 	}
+
+//	public function add_bookmark_get(){
+//
+//		$questionid = $this->get('qid');
+//		$userid = $this->get('uid');
+//
+//		$bookmark = $this->QuestionModel->addBookmark($questionid, $userid);
+//		if($bookmark) {
+//			$this->response(array(
+//				'status' => TRUE,
+//				'message' => 'Question added to the bookmark successfully.'
+//			), REST_Controller::HTTP_OK);
+//		} else {
+//			$this->response("Failed to add question to the bookmark.", REST_Controller::HTTP_BAD_REQUEST);
+//		}
+//
+//	}
 
 	public function add_bookmark_post(){
 

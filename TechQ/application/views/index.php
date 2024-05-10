@@ -285,6 +285,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 
+	<div id="footer-container"></div>
+
 <!--	<div class="question-area" id="question">-->
 <!--		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">-->
 <!--			<h1><strong>Top Questions</strong></h1>-->
@@ -294,8 +296,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--	</div>-->
 
 </script>
-
-
 
 
 <script type="text/template" id="user_template">
@@ -478,7 +478,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 
+	<div id="footer-container">
 
+	</div>
 
 </script>
 
@@ -705,7 +707,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</a>
 								</li>
 								<li>
-									<a href="#home/user/<%=userid%>" class="nav-link link-dark">
+									<a href="#home/user/<%=user_id%>" class="nav-link link-dark">
 										<i class="fa-solid fa-user"></i><span class="side-title">Profile</span>
 									</a>
 								</li>
@@ -750,7 +752,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<p><%= question %></p>
 								<p><%= expectationQ %></p>
 								<% if (questionimage !== '') { %>
-								<img src="<%= questionimage %>" alt="Question Image">
+								<img src="<%= questionimage %>" alt="Question Image" style="max-width: 800px">
 								<% } %>
 							</div>
 						</div>
@@ -895,7 +897,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="ex-answer">
 		<p> <%= answer %> </p>
 		<% if (answerimage !== '') { %>
-		<img src="<%= answerimage %>" alt="Answer Image">
+		<img src="<%= answerimage %>" alt="Answer Image" style="max-width: 800px">
 		<% } %>
 <!--		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">-->
 		<p style="margin-top: 10px"> <strong>Added Date: </strong><%= answeraddeddate %></p>
@@ -1034,6 +1036,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</nav>
 	</div>
 </script>
+
+
 
 <!--<script type="text/template" id="nav-bar-template">-->
 <!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->

@@ -100,6 +100,12 @@ app.views.LoginFormView = Backbone.View.extend({
 				timeout: 2000
 			}).show();
 			$("#errLog").html("Please fill the form");
+
+
+			// Show the error message for 2 seconds
+			setTimeout(function() {
+				$("#errLog").empty(); // Clear the error message after 2 seconds
+			}, 2000);
 		}else {
 			this.model.set(validateForm);
 			var url = this.model.url + "login";
@@ -119,6 +125,7 @@ app.views.LoginFormView = Backbone.View.extend({
 
 				},
 				error:function (model,xhr) {
+					console.log("model: ", model);
 					if(xhr.statsu=400){
 						$("#errLog").html("Username or Password Incorrect");
 						new Noty({
@@ -139,7 +146,16 @@ app.views.LoginFormView = Backbone.View.extend({
 		e.stopPropagation();
 
 		var validateForm = validateRegisterForm();
-		if (!validateForm) {
+		console.log("validateForm: ", validateForm);
+		if(validateForm === 'Invalid email address'){
+			$("#errSign").html("Invalid email address");
+
+			// Show the error message for 2 seconds
+			setTimeout(function() {
+				$("#errSign").empty(); // Clear the error message after 2 seconds
+			}, 2000);
+		}
+		else if (!validateForm) {
 			$("#errSign").html("Please fill the form");
 		} else {
 			console.log("validateForm: ");
