@@ -14,6 +14,8 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		this.$el.off('click', '#down-question-view').on('click', '#down-question-view', this.downQuestionView.bind(this));
 		this.$el.off('click', '#remove-bookmark').on('click', '#remove-bookmark', this.removeBookmark.bind(this));
 		this.$el.off('click', '#add-bookmark').on('click', '#add-bookmark', this.addBookmark.bind(this));
+		this.$el.off('click', '#delete_question').on('click', '#delete_question', this.deleteQuestion.bind(this));
+		this.$el.off('click', '#delete_answer').on('click', '#delete_answer', this.deleteAnswer.bind(this));
 	},
 
 	render: function() {
@@ -21,6 +23,7 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		console.log("app.attribute: ", this.model.attributes);
 		template = _.template($('#answer-question-template').html());
 		this.$el.html(template(this.model.attributes));
+		console.log('model answerquestionview 24: ', this.model.attributes);
 
 		app.navView = new app.views.NavBarView({ model: app.user });
 		app.navView.render();
@@ -36,7 +39,124 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		'click #up-question-view': 'upQuestionView',
 		'click #down-question-view': 'downQuestionView',
 		'click #remove-bookmark': 'removeBookmark',
-		'click #add-bookmark': 'addBookmark'
+		'click #add-bookmark': 'addBookmark',
+		'click #delete_question': 'deleteQuestion',
+		'click #delete_answer': 'deleteAnswer',
+	},
+
+	deleteAnswer: function (event){
+		console.log('deleteAnswer');
+
+		// Retrieve answerid and userid from the clicked button's data attributes
+		var answerid = $(event.currentTarget).data('answerid');
+		var userid = $(event.currentTarget).data('userid');
+		var answerimage = $(event.currentTarget).data('answerimage');
+
+		console.log('answerid: ', answerid);
+		console.log('userid: ', userid);
+
+		var dltanswer = {
+			answerid: answerid,
+			userid: userid,
+			answerimage: answerimage
+		};
+
+		console.log(this.model.urlAns + 'delete_answer')
+		var url = this.model.urlAns +  'delete_answer';
+
+		if(answerid != "" && answerid != null) {
+			app.user.fetch({
+				"url": url,
+				type: 'POST',
+				data: dltanswer,
+				success: (response) => {
+					console.log('answer deleted');
+					new Noty({
+						type: 'success',
+						text: 'Answer deleted',
+						timeout: 2000
+					}).show();
+
+					$userJson = JSON.parse(localStorage.getItem("user"));
+					console.log('userJson: ', $userJson);
+					$userJson['answerquestioncnt'] = parseInt($userJson['answerquestioncnt']) - 1;
+
+					localStorage.setItem("user", JSON.stringify($userJson));
+
+					window.location.reload();
+					// app.views.AnswerQuestionView.render();
+					// window.location.href = '/';
+					// app.appRouter.navigate("home", {trigger: true});
+				},
+				error: (xhr, status, error) => {
+					console.error('Error deleting answer:', error);
+					new Noty({
+						type: 'error',
+						text: 'Error deleting answer',
+						timeout: 2000
+					}).show();
+				}
+			});
+		}
+	},
+
+	deleteQuestion: function(){
+		console.log('deleteQuestion');
+
+		var currentUrl = window.location.href;
+
+		// Extract the last part of the URL after the last '/'
+		var lastPart = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+
+		// Extract the numeric part from the last part (assuming it's always at the end)
+		var $questionid = parseInt(lastPart.match(/\d+$/)[0]);
+
+		console.log("questionid form web: " +$questionid);
+
+		$userJson = JSON.parse(localStorage.getItem("user"));
+		$userid = $userJson['user_id'];
+		console.log('userid: ', $userid);
+
+		var dltquestion = {
+			questionid: $questionid,
+			userid: $userid
+		};
+
+		var url = this.model.url + 'delete_question';
+
+		if($questionid != "" && $questionid != null) {
+			app.user.fetch({
+				"url": url,
+				type: 'POST',
+				data: dltquestion,
+				success: (response) => {
+					console.log('question deleted');
+					new Noty({
+						type: 'success',
+						text: 'Question deleted',
+						timeout: 2000
+					}).show();
+
+					$userJson = JSON.parse(localStorage.getItem("user"));
+					console.log('userJson: ', $userJson);
+					$userJson['askquestioncnt'] = parseInt($userJson['askquestioncnt']) - 1;
+
+					localStorage.setItem("user", JSON.stringify($userJson));
+					// window.location.href = '/';
+					app.appRouter.navigate("home", {trigger: true});
+
+				},
+				error: (xhr, status, error) => {
+					console.error('Error deleting question:', error);
+					new Noty({
+						type: 'error',
+						text: 'Error deleting question',
+						timeout: 2000
+					}).show();
+				}
+			});
+		}
+
 	},
 
 	// addBookmark: function (){
@@ -133,54 +253,39 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 		};
 
 		var url = this.model.url + 'add_bookmark';
-		count = 0;
-		console.log('count: ' + count);
-		if(count == 0){
-			console.log('count 62: ' + count);
-			let notificationShowing = false;
 
-			$.ajax({
-				"url": url,
-				type: 'POST',
-				data: rBookmark,
-				success: (response) => {
-					console.log("questionid: " + rBookmark["questionid"])
-					console.log('bookmark add');
-					$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
-					$bookmarkIcon.attr('id', 'remove-bookmark');
-					if (!notificationShowing) { // Check if a notification is currently showing
-						new Noty({
-							type: 'success',
-							text: 'Bookmark add',
-							timeout: 2000,
-							callbacks: {
-								afterClose: function() {
-									notificationShowing = false; // Reset the flag after the notification is closed
-								}
-							}
-						}).show();
-						notificationShowing = true; // Set the flag to true when the notification is shown
-					}
-					count++;
-					console.log('count 81: ' + count);
+		$.ajax({
+			"url": url,
+			type: 'POST',
+			data: rBookmark,
+			success: (response) => {
+				console.log("questionid: " + rBookmark["questionid"])
+				console.log('bookmark add');
+				$bookmarkIcon.removeClass('fa-regular').addClass('fa-solid'); // Change icon to solid
+				$bookmarkIcon.attr('id', 'remove-bookmark');
+				new Noty({
+					type: 'success',
+					text: 'Bookmark add',
+					timeout: 2000,
+				}).show();
 
 
-					// $bookmarkIcon.on('click', this.removeBookmark.unbind(this));
-				},
-				error: (xhr, status, error) => {
-					console.error('Error adding bookmark:', error);
-					new Noty({
-						type: 'error',
-						text: 'Error adding bookmark',
-						timeout: 2000
-					}).show();
+				// $bookmarkIcon.on('click', this.removeBookmark.unbind(this));
+			},
+			error: (xhr, status, error) => {
+				console.error('Error adding bookmark:', error);
+				new Noty({
+					type: 'error',
+					text: 'Error adding bookmark',
+					timeout: 2000
+				}).show();
 
-					// $bookmarkIcon.on('click', this.addBookmark.bind(this));
-				},
-				// $("#add-bookmark").unbind();
-			});
+				// $bookmarkIcon.on('click', this.addBookmark.bind(this));
+			},
+			// $("#add-bookmark").unbind();
+		});
 
-		}
+
 
 		if($questionid != "" && $questionid != null) {
 			// $.ajax({
@@ -467,6 +572,9 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 
 
 	submitAnswer: function(e){
+		userJson = JSON.parse(localStorage.getItem("user"));
+		$userid = userJson['user_id'];
+
 		e.preventDefault();
 		e.stopPropagation();
 
@@ -490,6 +598,7 @@ app.views.AnswerQuestionView = Backbone.View.extend({
 				success: (response) => {
 					console.log('image uploaded', response);
 					validateAnswer.answerimage = response.imagePath;
+					validateAnswer.answeraddeduserid = $userid;
 					this.model.set(validateAnswer);
 
 					$questionid = this.model.attributes.questionid;

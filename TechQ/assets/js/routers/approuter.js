@@ -206,6 +206,7 @@ app.routers.AppRouter = Backbone.Router.extend({
 				success: function(model, responseQ){
 					console.log("sucess");
 					responseQ['username'] = app.user.get("username");
+					responseQ['user_id'] = $user_id;
 					var questionModel = new app.models.Questions(responseQ);
 					// questionModel['user_id'] = $user_id;
 					// var urlBookmark = app.user.urlAskQuestion + "getBookmark/?questionid=" + questionid + "&userid=" + $userid;
@@ -222,22 +223,25 @@ app.routers.AppRouter = Backbone.Router.extend({
 						},
 						success: function(responseB){
 							console.log("response: "+ responseB.is_bookmark);
-							// responseB['user_id'] = $user_id;
+
 							if(responseB.is_bookmark){
 								questionModel.set("is_bookmark", true);
+								questionModel.set("user_id", $user_id);
 								console.log("true bookmarked");
+								console.log("questionModel: "+ $user_id);
 								app.ansQuestionView = new app.views.AnswerQuestionView({
 									model: questionModel,
 									collection: new app.collections.AnswerCollection(),
-									bookmark: true
+									bookmark: true,
 								});
 							}else {
 								questionModel.set("is_bookmark", false);
 								console.log("false bookmarked");
+								console.log("questionModel: "+ $user_id);
 								app.ansQuestionView = new app.views.AnswerQuestionView({
 									model: questionModel,
 									collection: new app.collections.AnswerCollection(),
-									bookmark: false
+									bookmark: false,
 								});
 							}
 
@@ -247,6 +251,10 @@ app.routers.AppRouter = Backbone.Router.extend({
 								reset: true,
 								"url": answerUrl,
 								success: function (collection, response) {
+									collection.each(function (model) {
+										model.set("user_id", $user_id);
+									});
+									response['user_id'] = $user_id;
 									console.log("response: " + response);
 									app.ansQuestionView.render();
 								},

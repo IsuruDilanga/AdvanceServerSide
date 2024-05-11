@@ -822,6 +822,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!-- Optionally, include a preview section here -->
 					</div>
 
+
 					<div class="sub-answer">
 						<button type="submit" id="submit_answer" class="btn btn-primary ans-subbtn">Submit Answer</button>
 						<select class="form-control" required id="questionrate">
@@ -832,7 +833,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<option value="4">4</option>
 							<option value="5">5</option>
 						</select>
+
+
 					</div>
+					<p>logged user<%= user_id %></p>
+					<% if (user_id === userid || user_id === '1000') { %>
+					<button type="button" id="delete_question" class="btn btn-danger ans-subbtn">Delete Question</button>
+					<% } %>
 				</div>
 			</div>
 		</div>
@@ -897,10 +904,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<div class="ex-answer">
 		<p> <%= answer %> </p>
 		<% if (answerimage !== '') { %>
-		<img src="<%= answerimage %>" alt="Answer Image" style="max-width: 800px">
+		<img src="<%= answerimage %>" alt="Answer Image" style="max-width: 600px !important;">
 		<% } %>
+		<p>answerid <%= answerimage %></p>
+		<p>logged user<%= user_id %></p>
+		<p>answer added user<%= answeraddeduserid %></p>
 <!--		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">-->
 		<p style="margin-top: 10px"> <strong>Added Date: </strong><%= answeraddeddate %></p>
+		<% if (user_id === userid || user_id === '1000') { %>
+		<button type="button" id="delete_answer" class="btn btn-danger ans-subbtn"  data-answerid="<%= answerid %>" data-userid="<%= user_id %>" data-answerimage="<%= answerimage %>">Delete Answer</button>
+		<% } %>
 	</div>
 </script>
 

@@ -186,6 +186,46 @@ class QuestionModel extends CI_Model{
 		}
 	}
 
+	public function deleteQuestion($userid, $questionid){
+//		$question = $this->db->delete("Questions", array('questionid' => $questionid, 'userid' => $userid));
+//		return $question;
+		// First, delete related rows from the Answers table
+		$this->db->where('questionid', $questionid);
+		$this->db->delete('Answers');
+
+		// Delete related rows from the bookmarkque table
+		$this->db->where('questionid', $questionid);
+		$this->db->delete('bookmarkque');
+
+		// Delete related rows from the tags table
+		$this->db->where('questionid', $questionid);
+		$this->db->delete('tags');
+
+		// Then, delete the question from the Questions table
+		$this->db->where(array('questionid' => $questionid));
+		$questiondlt = $this->db->delete('Questions');
+
+		if($questiondlt){
+			$pastaskquestioncnt = $this->db->select('askquestioncnt')
+				->from('Users')
+				->where('user_id', $userid)
+				->get()
+				->row(); // Fetch the result as a single row
+
+			$askquestioncnt = $pastaskquestioncnt->askquestioncnt - 1;
+
+			$this->db->where('user_id', $userid)
+				->update('Users', array('askquestioncnt' => $askquestioncnt));
+		}
+
+		return $questiondlt;
+	}
+
+//	public function deleteAnswer($answerid, $userid){
+//		$answer = $this->db->delete("Answers", array('answerid' => $answerid, 'userid' => $userid));
+//		return $answer;
+//	}
+
 	public function removeBookmark($questionid, $userid){
 		$bookmark = $this->db->delete("BookmarkQue", array('questionid' => $questionid, 'userid' => $userid));
 		return $bookmark;

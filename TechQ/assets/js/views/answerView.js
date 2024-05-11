@@ -10,5 +10,6 @@ app.views.AnswerView = Backbone.View.extend({
 			this.$el.css('display', 'block');
 		}
 		this.$el.append(template(this.model.attributes));
+		console.log("answer view 13 "+this.model.attributes);
 	}
 })

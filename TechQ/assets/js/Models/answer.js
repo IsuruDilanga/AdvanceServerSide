@@ -3,9 +3,11 @@ var app = app || {};
 app.models.Answers = Backbone.Model.extend({
 	urlRoot: '/TechQ/index.php/api/Answer/',
 	defaults:{
-		answerid: null,
+		answerid: "",
 		questionid: null,
 		userid: null,
+		answeraddeduserid: null,
+		user_id:"",
 		answer: null,
 		answerimage: null,
 		answerrate: null,

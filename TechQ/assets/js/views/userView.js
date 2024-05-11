@@ -3,6 +3,19 @@ var app = app || {};
 app.views.UserView = Backbone.View.extend({
 	el: ".container",
 
+	initialize: function(){
+		this.listenTo(this.model, 'change', this.render);
+		this.bindEvents();
+	},
+
+	bindEvents:function(){
+		this.$el.off('click', '#edit_userdetails_btn').on('click', '#edit_userdetails_btn', this.editUserDetails.bind(this));
+		this.$el.off('click', '#edit_userpassword_btn').on('click', '#edit_userpassword_btn', this.changePassword.bind(this));
+		this.$el.off('click', '#edit_userchangedp_btn').on('click', '#edit_userchangedp_btn', this.chooseProfilePic.bind(this));
+		this.$el.off('change', '#upload_image_input').on('change', '#upload_image_input', this.uploadImage.bind(this));
+		this.$el.off('click', '#submitPasswordChange').on('click', '#submitPasswordChange', this.submitPasswordChange.bind(this));
+	},
+
 	render: function(){
 		console.log("userView render")
 		template = _.template($('#user_template').html());
