@@ -22,7 +22,7 @@ class Answer extends REST_Controller{
 	 */
 	public function getAnswers_get($questionid){
 
-		// Log the start of getAnswers process
+
 		log_message('debug', 'getAnswers() called');
 
 		// Retrieve answers from the AnswerModel
@@ -30,13 +30,13 @@ class Answer extends REST_Controller{
 
 		// Check if any answers were found
 		if (!empty($answers)) {
-			// Log the found answers
+
 			log_message('info', 'Answers found: ' . json_encode($answers));
 
 			// Send a response with the found answers
 			$this->response($answers, REST_Controller::HTTP_OK);
 		} else {
-			// Log that no answers were found
+
 			log_message('error', 'No answers found.');
 
 			// Send a response indicating that no answers were found
@@ -54,7 +54,7 @@ class Answer extends REST_Controller{
 	 *
 	 */
 	public function ans_image_post() {
-		// Log the start of image upload process
+
 		log_message('debug', 'ans_image_post() called');
 
 		// Check if file is uploaded and it's not empty
@@ -62,7 +62,7 @@ class Answer extends REST_Controller{
 			// Define upload directory
 			$uploadDir = '/Applications/XAMPP/xamppfiles/htdocs/TechQ/assets/images/answer/';
 
-			// Log the upload directory
+
 			log_message('debug', 'uploadDir: ' . $uploadDir);
 
 			// Set upload configuration
@@ -80,19 +80,19 @@ class Answer extends REST_Controller{
 				// Adjust imagePath relative to the URL structure
 				$imagePath = '../../assets/images/answer/' . $uploadData['file_name'];
 
-				// Log the image path
+
 				log_message('debug', 'answer imagePath: ' . $imagePath);
 
 				// Send a response with the image path
 				$this->response(array('imagePath' => $imagePath), REST_Controller::HTTP_OK);
 			} else {
-				// Log the error message
+
 				log_message('error', 'Error uploading file: ' . $this->upload->display_errors());
 				// Error uploading file, send a response with the error message
 				$this->response(array('error' => $this->upload->display_errors()), REST_Controller::HTTP_BAD_REQUEST);
 			}
 		} else {
-			// Log that no file was uploaded
+
 			log_message('debug', 'No file uploaded.');
 			// No file uploaded, return a default image path or an empty response
 			$this->response(array('imagePath' => ''), REST_Controller::HTTP_OK);
@@ -109,7 +109,7 @@ class Answer extends REST_Controller{
 	 *
 	 */
 	public function add_answer_post(){
-		// Log the start of the add_answer_post function
+
 		log_message('debug', 'add_answer_post() called');
 
 		// Retrieve and sanitize input data from the POST request
@@ -123,7 +123,7 @@ class Answer extends REST_Controller{
 		// Initialize answerimage variable
 		$answerimage = '';
 
-		// Log the input data for debugging purposes
+
 		log_message('info', 'questionid: ' . $questionid . ', userid: ' . $userid . ', answer: ' . $answer . ', imageurl: ' . $imageurl . ', answeraddreddate: ' . $answeraddreddate . ', rate: ' . $rate);
 
 		// Check if an image file is uploaded
@@ -137,7 +137,7 @@ class Answer extends REST_Controller{
 				// File uploaded successfully, update image path
 				$answerimage = $uploadFile;
 
-				// Log the image path for debugging purposes
+
 				log_message('info', 'answerimage: ' . $answerimage);
 			}
 		}
@@ -147,7 +147,7 @@ class Answer extends REST_Controller{
 			// Call the addAnswer method of the AnswerModel to add the answer to the database
 			$result = $this->AnswerModel->addAnswer($questionid, $userid, $answer, $answeraddreddate, $imageurl, $rate);
 			if ($result) {
-				// Log the successful addition of the answer
+
 				log_message('info', 'Answer added successfully.');
 				// Send a response with the status, message and the ID of the added answer
 				$this->response(array(
@@ -156,7 +156,7 @@ class Answer extends REST_Controller{
 					'answerid' => $result
 				), REST_Controller::HTTP_OK);
 			} else {
-				// Log the failure of adding the answer
+
 				log_message('error', 'Failed to add answer.');
 				// Send a response with an error message
 				$this->response("Failed to add answer.", REST_Controller::HTTP_BAD_REQUEST);
@@ -175,7 +175,7 @@ class Answer extends REST_Controller{
 	 */
 	public function delete_answer_post(){
 
-		// Log the start of the delete_answer_post function
+
 		log_message('debug', 'delete_answer_post() called');
 
 		// Retrieve the answer ID and image from the POST request
@@ -186,7 +186,7 @@ class Answer extends REST_Controller{
 		// Call the deleteAnswer method of the AnswerModel to delete the answer from the database
 		$delete = $this->AnswerModel->deleteAnswer($answerid, $userid, $answerimage);
 		if($delete) {
-			// Log the successful deletion of the answer
+
 			log_message('info', 'Answer deleted successfully.');
 			// Send a response with the status and success message
 			$this->response(array(
@@ -194,7 +194,7 @@ class Answer extends REST_Controller{
 				'message' => 'Answer deleted successfully.'
 			), REST_Controller::HTTP_OK);
 		} else {
-			// Log the failure of deleting the answer
+
 			log_message('error', 'Failed to delete answer.');
 			// Send a response with an error message
 			$this->response("Failed to delete answer.", REST_Controller::HTTP_BAD_REQUEST);

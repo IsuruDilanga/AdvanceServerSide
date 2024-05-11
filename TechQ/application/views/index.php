@@ -59,8 +59,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<!--<div class="nav_container"></div>-->
-<!--<div class="container" style="margin-top: 50px; " ></div>-->
 <div class="container" style="margin-top: 70px; width: 93%;" ></div>
 
 <script type="text/template" id="login_template">
@@ -179,31 +177,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 
-<!--                                    <div class="form-label-group">-->
-<!--                                        <input type="text" class="form-control" placeholder="Enter username"-->
-<!--                                               required autofocus id="regUsername">-->
-<!--                                    </div>-->
-<!--									<div class="form-label-group">-->
-<!--										<input type="text" class="form-control" placeholder="Enter your name"-->
-<!--											   required autofocus id="regName">-->
-<!--									</div>-->
-<!--									<div class="form-label-group-sign">-->
-<!--										<input type="email" class="form-control" placeholder="Enter your email"-->
-<!--											   required autofocus id="regEmail">-->
-<!--									</div>-->
                                     <div class="form-label-group-sign">
                                         <input type="password" id="regPassword" class="form-control"
                                                placeholder="Password"
                                                required name="password">
                                     </div>
 
-<!--									<div class="form-label-group-sign">-->
-<!--										<select class="form-control" required autofocus id="regOccupation">-->
-<!--											<option value="" selected disabled>Please select</option>-->
-<!--											<option value="student">Student</option>-->
-<!--											<option value="employee">Employee</option>-->
-<!--										</select>-->
-<!--									</div>-->
                                     <button class="btn btn-outline-primary btn-block " id="signup_button" style="margin-top: 50px"
                                             type="submit">Sign up
                                     </button>
@@ -218,8 +197,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </script>
 
 
-
-
 <script type="text/template" id="home_template">
 
 	<div id="nav-bar-container">
@@ -231,10 +208,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-sm-2">
 				<div class="slide_navbar">
 					<div class="d-flex flex-column slide_navbar-div " style=" ">
-<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
-<!--							<span class="fs-4">Sidebar</span>-->
-<!--						</a>-->
 						<div class="slid-nav-li">
 							<ul class="nav nav-pills flex-column mb-auto" >
 								<li class="nav-item">
@@ -254,21 +227,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
-
-<!--						<hr>-->
-<!--						<div class="dropdown">-->
-<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-<!--								<strong>mdo</strong>-->
-<!--							</a>-->
-<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
-<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
-<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
-<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
-<!--								<li><hr class="dropdown-divider"></li>-->
-<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
-<!--							</ul>-->
-<!--						</div>-->
 					</div>
 				</div>
 
@@ -285,16 +243,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 
-	<div id="footer-container"></div>
-
-<!--	<div class="question-area" id="question">-->
-<!--		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">-->
-<!--			<h1><strong>Top Questions</strong></h1>-->
-<!--			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>-->
-<!--		</div>-->
-<!--		<hr>-->
-<!--	</div>-->
-
 </script>
 
 
@@ -304,16 +252,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	</div>
 
-
 	<div class="container" >
 		<div class="row" style="margin-top: 100px">
 			<div class="col-sm-2">
 				<div class="slide_navbar">
 					<div class="d-flex flex-column slide_navbar-div " style=" ">
-						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
-						<!--							<span class="fs-4">Sidebar</span>-->
-						<!--						</a>-->
 						<div class="slid-nav-li">
 							<ul class="nav nav-pills flex-column mb-auto" >
 								<li class="nav-item">
@@ -333,21 +276,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
-
-						<!--						<hr>-->
-						<!--						<div class="dropdown">-->
-						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-						<!--								<strong>mdo</strong>-->
-						<!--							</a>-->
-						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
-						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
-						<!--								<li><hr class="dropdown-divider"></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
-						<!--							</ul>-->
-						<!--						</div>-->
 					</div>
 				</div>
 
@@ -478,10 +406,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 	</div>
 
-	<div id="footer-container">
-
-	</div>
-
 </script>
 
 <script type="text/template" id="password_template">
@@ -516,10 +440,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-sm-2">
 				<div class="slide_navbar">
 					<div class="d-flex flex-column slide_navbar-div " style=" ">
-						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
-						<!--							<span class="fs-4">Sidebar</span>-->
-						<!--						</a>-->
 						<div class="slid-nav-li">
 							<ul class="nav nav-pills flex-column mb-auto" >
 								<li class="nav-item">
@@ -539,21 +459,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
-
-						<!--						<hr>-->
-						<!--						<div class="dropdown">-->
-						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-						<!--								<strong>mdo</strong>-->
-						<!--							</a>-->
-						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
-						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
-						<!--								<li><hr class="dropdown-divider"></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
-						<!--							</ul>-->
-						<!--						</div>-->
 					</div>
 				</div>
 
@@ -619,64 +524,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-
-<!--	<h3 class="question-page-title" >Ask a Technical Questions</h3>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<p class="topic">Title</p>-->
-<!--		<p style="font-size: 12px">Be specific and imaging you're asking a question to another person</p>-->
-<!---->
-<!--		<input type="text" class="form-control form-title" placeholder="Enter Question Title"-->
-<!--			   required id="inputQuestionTitle" name="inputQuestionTitle">-->
-<!--	</div>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<p class="topic">What are the details of your problem</p>-->
-<!--		<p style="font-size: 12px">Introduce the problem and expand on what you put in the title. Minimum 20 characters</p>-->
-<!---->
-<!--		<textarea class="form-control form-title" id="inputQuestionDetails" name="inputQuestionDetails"-->
-<!--				  rows="3" required></textarea>-->
-<!--	</div>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<p class="topic">What did you try and what were you expecting?</p>-->
-<!--		<p style="font-size: 12px">describe what you tried, what you expected to happen, and what actually-->
-<!--				resulted. Minimum 20 Characters</p>-->
-<!--		<textarea class="form-control form-title" id="inputQuestionExpectation" name="inputQuestionExpectation"-->
-<!--				  rows="3" required></textarea>-->
-<!--	</div>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<p class="topic">Upload Image</p>-->
-<!--		<p style="font-size: 12px">Upload an image related to your question (optional)</p>-->
-<!--		<input type="file" class="form-control-file" id="imageUpload" name="imageUpload">-->
-<!--		Optionally, include a preview section here -->
-<!--	</div>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<p class="topic">Tags</p>-->
-<!--		<p style="font-size: 12px">Add up to 5 tags to describe what your question is about. Start typing to see suggestion </p>-->
-<!--		<input type="text" class="form-control form-title" placeholder="e.g. (javascript, react, nodejs)"-->
-<!--			   required id="inputQuestionTags" name="inputQuestionTags">-->
-<!--	</div>-->
-<!---->
-<!--	<div class="question-title">-->
-<!--		<select class="form-control" required id="questionCategory">-->
-<!--			<option value="" selected disabled>Category</option>-->
-<!--			<option value="software">Software</option>-->
-<!--			<option value="hardware">Hardware</option>-->
-<!--			<option value="programming">Programming</option>-->
-<!--			<option value="networking">Networking</option>-->
-<!--			<option value="security">Security</option>-->
-<!--			<option value="database">Database</option>-->
-<!--			<option value="web-development">Web Development</option>-->
-<!--			<option value="mobile-development">Mobile Development</option>-->
-<!--			<option value="cloud-computing">Cloud Computing</option>-->
-<!--			<option value="artificial-intelligence">Artificial Intelligence</option>-->
-<!--		</select>-->
-<!--	</div>-->
-<!---->
-<!--	<button type="submit" id="submit_question" class="btn btn-primary question-subbtn">Submit Question</button>-->
 </script>
 
 <script type="text/template" id="answer-question-template">
@@ -690,10 +537,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-sm-2">
 				<div class="slide_navbar">
 					<div class="d-flex flex-column slide_navbar-div " style=" ">
-						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
-						<!--							<span class="fs-4">Sidebar</span>-->
-						<!--						</a>-->
 						<div class="slid-nav-li">
 							<ul class="nav nav-pills flex-column mb-auto" >
 								<li class="nav-item">
@@ -713,21 +556,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
-
-						<!--						<hr>-->
-						<!--						<div class="dropdown">-->
-						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-						<!--								<strong>mdo</strong>-->
-						<!--							</a>-->
-						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
-						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
-						<!--								<li><hr class="dropdown-divider"></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
-						<!--							</ul>-->
-						<!--						</div>-->
 					</div>
 				</div>
 
@@ -771,36 +599,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<% } %>
 						</div>
 					</div>
-<!--					<div class="row">-->
-<!--						<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">-->
-<!--							<div class="arrow-up" id="up-question-view" data-clicked="false">-->
-<!--								<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 30px"></i>-->
-<!--							</div>-->
-<!--							<p class="view-status" id="question-view-status"><%=viewstatus%></p>-->
-<!--							<div class="arrow-down" id="down-question-view" data-clicked="false">-->
-<!--								<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 30px"></i>-->
-<!--							</div>-->
-<!--							<% if (is_bookmark) { %>-->
-<!--							<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>-->
-<!--							<% } else {%>-->
-<!--							<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>-->
-<!--							<% } %>-->
-<!--						</div>-->
-<!--						<div class="col-sm-11 question-display">-->
-<!--							<div class="ans-question-title">-->
-<!--								<h3 class="answer"><%= title %></h3>-->
-<!--								<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>-->
-<!--							</div>-->
-<!---->
-<!--							<div class="ans-question">-->
-<!--								<p><%= question %></p>-->
-<!--								<p><%= expectationQ %></p>-->
-<!--								<% if (questionimage !== '') { %>-->
-<!--								<img src="<%= questionimage %>" alt="Question Image">-->
-<!--								<% } %>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</div>-->
 				</div>
 				<div class="existing-answer-area" id="answer" style="display: none">
 					<div class="top-answers" style="display: flex; justify-content: space-between; align-items: center;">
@@ -836,7 +634,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 					</div>
-					<p>logged user<%= user_id %></p>
 					<% if (user_id === userid || user_id === '1000') { %>
 					<button type="button" id="delete_question" class="btn btn-danger ans-subbtn">Delete Question</button>
 					<% } %>
@@ -844,59 +641,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-
-<!--	<div class="container-fluid answer-contain" style="marg">-->
-<!--		<div class="row">-->
-<!--			<div class="col-sm-1 left-side-question question-display" style="background-color: #8fcbff; height: 250px">-->
-<!--				<div class="arrow-up" id="up-question-view" data-clicked="false">-->
-<!--					<i class="fa-solid fa-angle-up" style="margin-top: 10px; font-size: 30px"></i>-->
-<!--				</div>-->
-<!--				<p class="view-status" id="question-view-status"><%=viewstatus%></p>-->
-<!--				<div class="arrow-down" id="down-question-view" data-clicked="false">-->
-<!--					<i class="fa-solid fa-angle-down" style="margin-top: 10px; font-size: 30px"></i>-->
-<!--				</div>-->
-<!--				<% if (is_bookmark) { %>-->
-<!--					<i class="fa-solid fa-bookmark add-to-bookmark" id="remove-bookmark"></i>-->
-<!--				<% } else {%>-->
-<!--					<i class="fa-regular fa-bookmark add-to-bookmark" id="add-bookmark"></i>-->
-<!--				<% } %>-->
-<!--			</div>-->
-<!--			<div class="col-sm-11 question-display">-->
-<!--				<div class="ans-question-title">-->
-<!--					<h3 class="answer"><%= title %></h3>-->
-<!--					<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>-->
-<!--				</div>-->
-<!---->
-<!--				<div class="ans-question">-->
-<!--					<p><%= question %></p>-->
-<!--					<p><%= expectationQ %></p>-->
-<!--					<% if (questionimage !== '') { %>-->
-<!--					<img src="<%= questionimage %>" alt="Question Image">-->
-<!--					<% } %>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-
-<!--	<h1>answer Question Page</h1>-->
-<!--	<div class="question-display">-->
-<!--		<div class="ans-question-title">-->
-<!--			<h3 class="answer"><%= title %></h3>-->
-<!--			<p><strong>Asked:</strong> <%= Qaddeddate %>    <strong>Rate:</strong> <%= rate %> </p>-->
-<!--		</div>-->
-<!---->
-<!--		<div class="ans-question">-->
-<!--			<p><%= question %></p>-->
-<!--			<p><%= expectationQ %></p>-->
-<!--					<img src="../../assets/images/images9.jpeg" alt="Question Image">-->
-<!--			<% if (questionimage !== '') { %>-->
-<!--				<img src="<%= questionimage %>" alt="Question Image">-->
-<!--			<% } %>-->
-<!--		</div>-->
-<!--	</div>-->
-
-
-
 
 </script>
 
@@ -906,10 +650,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<% if (answerimage !== '') { %>
 		<img src="<%= answerimage %>" alt="Answer Image" style="max-width: 600px !important;">
 		<% } %>
-		<p>answerid <%= answerimage %></p>
-		<p>logged user<%= user_id %></p>
-		<p>answer added user<%= answeraddeduserid %></p>
-<!--		<img src="<%= answerimage %>" alt="Answer Image" style="margin-top: 10px">-->
 		<p style="margin-top: 10px"> <strong>Added Date: </strong><%= answeraddeddate %></p>
 		<% if (user_id === userid || user_id === '1000') { %>
 		<button type="button" id="delete_answer" class="btn btn-danger ans-subbtn"  data-answerid="<%= answerid %>" data-userid="<%= user_id %>" data-answerimage="<%= answerimage %>">Delete Answer</button>
@@ -928,10 +668,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="col-sm-2">
 				<div class="slide_navbar">
 					<div class="d-flex flex-column slide_navbar-div " style=" ">
-						<!--						<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
-						<!--							<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
-						<!--							<span class="fs-4">Sidebar</span>-->
-						<!--						</a>-->
 						<div class="slid-nav-li">
 							<ul class="nav nav-pills flex-column mb-auto" >
 								<li class="nav-item">
@@ -951,21 +687,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							</ul>
 						</div>
-
-						<!--						<hr>-->
-						<!--						<div class="dropdown">-->
-						<!--							<a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">-->
-						<!--								<img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">-->
-						<!--								<strong>mdo</strong>-->
-						<!--							</a>-->
-						<!--							<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">-->
-						<!--								<li><a class="dropdown-item" href="#">New project...</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Settings</a></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Profile</a></li>-->
-						<!--								<li><hr class="dropdown-divider"></li>-->
-						<!--								<li><a class="dropdown-item" href="#">Sign out</a></li>-->
-						<!--							</ul>-->
-						<!--						</div>-->
 					</div>
 				</div>
 
@@ -981,48 +702,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 		</div>
 	</div>
-
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!--			<form class="form-inline my-2 my-lg-0">-->
-<!--				<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--				<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--			</form>-->
-<!---->
-<!--			<div class="collapse navbar-collapse" id="navbarToggler">-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li class="nav-username" style="font-size: 20px; cursor: pointer">-->
-<!--						<a href="#" style="text-decoration: none; color: white">-->
-<!--							<i class="fa-solid fa-user"></i> <%=username%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">-->
-<!--					<li style="font-size: 30px">-->
-<!--						<a href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white; cursor: pointer">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
-<!---->
-<!--			</div>-->
-<!--		</nav>-->
-<!---->
-<!--	</div>-->
-
-<!--	<div class="question-area" id="question">-->
-<!--		<div class="top-questions" style="display: flex; justify-content: space-between; align-items: center;">-->
-<!--			<h1>Bookmark Questions</h1>-->
-<!--			<button type="button" class="btn btn-primary" id="ask_question_btn">Ask Question</button>-->
-<!--		</div>-->
-<!--		<hr>-->
-<!--	</div>-->
-
 </script>
 
 <script type="text/template" id="nav-bar-template">
@@ -1049,48 +728,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</nav>
 	</div>
 </script>
-
-
-
-<!--<script type="text/template" id="nav-bar-template">-->
-<!--	<div class="header" style="position:absolute;top:0;left:0;width:100%">-->
-<!--		<nav class="navbar navbar-expand-lg navbar-light nav-color">-->
-<!--			<a class="navbar-brand" href="#">Tech'Q</a>-->
-<!---->
-<!--			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--				<span class="navbar-toggler-icon" style="color: #2ea53a"></span>-->
-<!--			</button>-->
-<!---->
-<!--			<div class="collapse navbar-collapse justify-content-center" id="navbarToggler">-->
-<!--				<div class="d-flex justify-content-center align-items-center flex-grow-1">-->
-<!--					<form class="form-inline my-2 my-lg-0">-->
-<!--						<input class="form-control mr-sm-2" id="searchHome" type="search" placeholder="Search Question" aria-label="Search">-->
-<!--						<button class="btn btn-outline-success my-2 my-sm-0" id="homesearch" type="submit"><i class="fas fa-search"></i> search</button>-->
-<!--					</form>-->
-<!--				</div>-->
-<!--				<ul class="navbar-nav">-->
-<!--					<li class="nav-item" style="font-size: 20px;">-->
-<!--						<a class="nav-link" href="#home/user/<%=user_id%>" style="text-decoration: none; color: white;">-->
-<!--							<i class="fa-solid fa-user"></i> <%=name%>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--					<li class="nav-item ml-3" style="font-size: 30px;">-->
-<!--						<a class="nav-link" href="#home/bookmark/<%=user_id%>" style="text-decoration: none; color: white;">-->
-<!--							<i class="fa-regular fa-bookmark"></i>-->
-<!--						</a>-->
-<!--					</li>-->
-<!--				</ul>-->
-<!--				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">-->
-<!--					<a href="#logout" id="logout" class="btn btn-secondary my-2 my-sm-0">-->
-<!--						<i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>-->
-<!--				</ul>-->
-<!--			</div>-->
-<!--		</nav>-->
-<!---->
-<!---->
-<!--	</div>-->
-<!--</script>-->
-
 
 </body>
 </html>
